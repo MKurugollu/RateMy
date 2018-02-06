@@ -19,6 +19,7 @@ can upload images (and maybe videos if possible) of the category and other users
 3) I think we should map out everything first. Ie make simple views and links to the urls so we have the foundation to build up on
 
 4) Then after we can inlude the following featuers (feel free to add anymore):
+
       ---------*Basic Features that should be added*---------------
       -Threaded comments
       -creating categories
