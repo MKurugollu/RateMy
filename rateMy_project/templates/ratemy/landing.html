@@ -1,91 +1,22 @@
 <!DOCTYPE html>
+
+{% load staticfiles %}
+
 <html lang="en">
 
-  <head>
-    <title>RateMy</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <style>
-    /* #grad1 {
-  height: 100%;
-  width: 100%;
-  background: red;
-  For browsers that do not support gradients
-  background: linear-gradient(blue, dodgerblue);
-  Standard syntax (must be last)
-} */
-
-html {
-  height: 100%;
-}
-
-body {
-  height: 100%;
-  margin: 0;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-
-.center-div
-{
-     margin: 0 auto;
-     width: 100px;
-}
-
-
-.outer-div
-{
-     position: absolute;
-     bottom: 30px;
-     width: 100%;
-}
-.inner-div
-{
-     margin: 0 auto;
-     width: 100px;
-     height: 100px;
-
-}
-
-/*This is for changing the button colors when normal */
-.btn-primary, .btn-primary:active, .btn-primary:visited {
-    background-color: Orange  !important;
-}
-
-/*This is for changing the button colors when hovering over the button */
-.btn-primary:hover{
-   background-color:coral  !important;
-}
-
-
-/*For hover search button*/
-.search-container button:hover {
-  background: DarkOrange; !important;
-}
-
-@media screen and (max-width: 600px) {
-  .search-container {
-    float: none;
-  }
-  .search-container button {
-    float: none;
-    display: block;
-    text-align: left;
-    width: 100%;
-    margin: 0;
-    padding: 14px;
-  }
-}
-    </style>
-  </head>
+    <head>
+        <title>RateMy</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{% static "css/landing.css" %}" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
 
   <!--colours i like: DarkTurquoise, DeepSkyBlue  -->
   <body scroll="no" style="background-color:PowderBlue;text-align:center;overflow: hidden" >
-  <img src="C:\Users\User\Pictures\ratemylogoclear_bordered_clean.png" alt="ratemy logo">
+  <img src='{% static "website-images/TestLogo.png" %}' alt="ratemy logo">
 
     <div class="search-container">
     <form action="/action_page.php">
