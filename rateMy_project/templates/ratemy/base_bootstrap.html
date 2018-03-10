@@ -1,21 +1,25 @@
 <!DOCTYPE html>
+
 <html lang="en">
-  <head>
+<head>
+    {% load ratemy_template_tags %}
+    {% load staticfiles %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{% static 'images/favicon.ico' %}">
-      <!-- Bootstrap core CSS -->
+    {# link rel="icon" href="{% static 'images/favicon.ico' %} #}
+    <!-- Bootstrap core CSS -->
     <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <title>{% block title_block %}{%endblock%}</title>
     <!-- Custom styles for this template -->
     <style>
         .navbar {
   background-color: #b0e0e6 !important;
+  transition: all 0.5s;
 }
 .navbar .navbar-brand {
   color: #ffffff;
@@ -46,6 +50,7 @@
 .navbar .navbar-nav .dropdown-menu {
   background-color: #b0e0e6;
   border-color: #b0e0e6;
+  transition: all 0.3s;
 }
 .navbar .navbar-nav .dropdown-menu .dropdown-item {
   color: #ffffff;
@@ -58,6 +63,7 @@
 }
 .navbar .navbar-nav .dropdown-menu .dropdown-divider {
   border-top-color: #b0e0e6;
+  transition: all 0.5s;
 }
 .navbar .navbar-nav .nav-item.active .nav-link,
 .navbar .navbar-nav .nav-item.active .nav-link:hover,
@@ -174,84 +180,113 @@
     margin: 0;
     padding: 14px;
   }
+
+
+
     </style>
 
-  </head>
+</head>
 
-  <body>
+<body>
 
-    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
-      <button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse" id="navbar">
+    <button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse"
+            data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
-      <a class="navbar-brand" href="{% url 'index' %}">RateMy</a>
+    </button>
+    <a class="navbar-brand" href="#">RateMy</a>
 
-      <div class="collapse navbar-collapse" id="navbar">
+    <div class="collapse navbar-collapse" id="navbar2">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'index' %}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'about' %}">About</a>
-          </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'add_category' %}">Add a New Category</a>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'profile' user.username %}">Profile</a>
+                <a class="nav-link" href="#">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'list_profiles' %}">List Profiles</a>
+                <a class="nav-link" href="#">FAQs</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'auth_logout' %}?next=/rango/">Logout</a>
+                <a class="nav-link" href="#">Contact Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'registration_register' %}">Register Here</a>
+                <a class="nav-link" href="#">Add a New Category</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'auth_login' %}">Login</a>
+                <a class="nav-link" href="#">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Sign Up</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Login</a>
             </li>
             <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="true">Dropdown</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01" id="drop">
+                    <a class="dropdown-item" href="#">Profile</a>
+                    <a class="dropdown-item" href="#">Account Settings</a>
+                    <a class="dropdown-item" href="#">Add a New Category</a>
+                    <a class="dropdown-item" href="#">Log Out</a>
+                </div>
+            </li>
         </ul>
         <div class="search-container">
             <form action="/action_page.php">
-              <input type="text" placeholder="Search.." name="search">
-              <button type="submit"><i class="fa fa-search"></i></button>
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
             </form>
         </div>
-      </div>
+    </div>
 
-    </nav>
+</nav>
+<div style="padding:100px;text-align:center">
+    {% block body_block %}{% endblock %}
+</div>
 
 
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"
+        integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY"
+        crossorigin="anonymous"></script>
+<!--
+   <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"
+        integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB"
+        crossorigin="anonymous"></script>
+<script src="http://v4-alpha.getbootstrap.com/dist/js/bootstrap.min.js"></script>
+<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+<!--
+<script src="http://v4-alpha.getbootstrap.com/assets/js/vendor/holder.min.js"></script>
+-->
 
-     <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
- <!--
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
- -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
-    <script src="http://v4-alpha.getbootstrap.com/dist/js/bootstrap.min.js"></script>
-    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <!--
-    <script src="http://v4-alpha.getbootstrap.com/assets/js/vendor/holder.min.js"></script>
-    -->
+<script>
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    document.getElementById("navbar").style.top = "0";
+    document.getElementById("drop").style.top = "45px";
+  } else {
+    document.getElementById("navbar").style.top = "-60px";
+    document.getElementById("drop").style.top = "-100px";
+  }
+  prevScrollpos = currentScrollPos;
+}
+</script>
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="http://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
-    <script src="{% static "js/rango-ajax.js" %}"></script>
-    <script src="{% static "js/rango-jquery.js" %}"></script>
-  </body>
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="http://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js">
+
+
+</body>
 </html>
 
 
