@@ -25,5 +25,6 @@ urlpatterns = [
     url(r'^$', views.landing, name='landing'),
     url(r'^ratemy/', include('ratemy.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #tells Django to serve static conetent from MEDIA_URL
 

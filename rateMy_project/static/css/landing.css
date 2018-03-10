@@ -18,6 +18,7 @@ body {
   background-attachment: fixed;
 }
 
+
 .center-div
 {
      margin: 0 auto;
@@ -39,10 +40,12 @@ body {
 
 }
 
+
 /*This is for changing the button colors when normal */
 .btn-primary, .btn-primary:active, .btn-primary:visited {
     background-color: Orange  !important;
 }
+
 
 /*This is for changing the button colors when hovering over the button */
 .btn-primary:hover{
