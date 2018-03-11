@@ -1,9 +1,85 @@
 {% extends "ratemy/base_bootstrap.html" %}
+
+{% block title_block %}
+    Registration
+{% endblock %}
+
+{%block style_block%}
+
+    .form-control.width{
+        width: 400px !important;
+        margin:auto;
+    }
+
+    .form-control.width:focus{
+        outline: none !important;
+        border:1px solid coral;
+    }
+
+    .form.align{
+        text-align:center !important;
+        display: table-cell;
+        margin: auto;
+    }
+
+    html, body {
+        height: 100%;
+    }
+
+    .required.bold{
+        font-weight: bold;
+    }
+
+    .btn-primary, .btn-primary:active {
+        background-color: Orange  !important;
+    }
+
+    .btn-primary:hover{
+       background-color:coral  !important;
+    }
+    .form_style{
+        position: relative;
+        top: 50%;
+        transform: translateY(25%);
+    }
+
+{% endblock %}
+
 {% block body_block %}
-    <h1>Register Here</h1>
-    <form method="post" action=".">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Submit" />
-    </form>
+
+
+<form class="form_style" style="border-radius: 25px;margin:auto;background-color:powderblue;width:500px;color:white;" role="form" method="post" action=".">
+    <h2 class="form-signin-heading">Sign Up Here</h2>
+    {% csrf_token %}
+    <div class="form-group align" >
+    <p class="required"><label class="required bold" for="id_username">
+        Username:</label>
+        <input class="form-control width" id="id_username" maxlength="30"
+            name="username" type="text" />
+        <span class="helptext">
+        Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only.
+        </span>
+    </p>
+    <p class="required"><label class="required bold" for="id_email">
+        E-mail:</label>
+        <input class="form-control width" id="id_email" name="email"
+            type="email" />
+    </p>
+    <p class="required"><label class="required bold" for="id_password1">
+        Password:</label>
+        <input class="form-control width" id="id_password1" name="password1"
+            type="password" />
+    </p>
+    <p class="required">
+        <label class="required bold" for="id_password2">
+            Password confirmation:</label>
+        <input class="form-control width" id="id_password2" name="password2"
+            type="password" />
+        <span class="helptext">
+            Enter the same password as before, for verification.
+        </span>
+    </p>
+    </div>
+    <button style="position: relative; top: -10px;" type="submit" class="btn btn-primary">Submit</button>
+</form>
 {% endblock %}
