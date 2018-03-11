@@ -4,13 +4,14 @@
 <head>
     {% load ratemy_template_tags %}
     {% load staticfiles %}
+    {%block style_block%}{%endblock%}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    {# link rel="icon" href="{% static 'images/favicon.ico' %} #}
+    <link rel="icon" href="{% static 'website-images/favicon.ico' %}">
     <!-- Bootstrap core CSS -->
     <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -65,7 +66,6 @@
 }
 .navbar .navbar-nav .dropdown-menu .dropdown-divider {
   border-top-color: #b0e0e6;
-  transition: all 0.5s;
 }
 .navbar .navbar-nav .nav-item.active .nav-link,
 .navbar .navbar-nav .nav-item.active .nav-link:hover,
@@ -193,12 +193,12 @@
             data-target="#navbar" aria-controls="navbar" aria-expanded="true" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#">RateMy</a>
+    <a class="navbar-brand" href="/ratemy/">RateMy</a>
 
     <div class="collapse navbar-collapse" id="navbar">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'about' %}" aria-pressed="true">About</a>

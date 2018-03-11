@@ -20,3 +20,8 @@ def faq(request):
 def contact_us(request):
     context_dict = {}
     return render(request, 'ratemy/contact_us.html', context_dict)
+
+
+def home(request):
+    context_dict = {}
+    return render(request, 'ratemy/home.html', context_dict)
