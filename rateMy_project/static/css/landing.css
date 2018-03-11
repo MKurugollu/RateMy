@@ -41,10 +41,11 @@ body {
 }
 
 
+
 /*This is for changing the button colors when normal */
-.btn-primary, .btn-primary:active, .btn-primary:visited {
+/*.btn-primary, .btn-primary:active, .btn-primary:visited {
     background-color: Orange  !important;
-}
+}*/
 
 
 /*This is for changing the button colors when hovering over the button */

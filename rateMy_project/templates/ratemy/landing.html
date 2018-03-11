@@ -30,16 +30,18 @@
       <div class="inner-div">
 
 
-      <button type="button"  class="btn btn-primary btn-lg " href="{% url 'registration_register' %}">Sign Up</button>
+      <input type="button" class="btn btn-primary btn-lg" value="Sign Up" onclick="location.href = 'accounts/register';">
       <hr style="height:3px;width:100px;margin-top:10px;margin-bottom:10px" />
-      <button type="button"  class="btn btn-primary btn-lg" href="{% url 'auth_login' %}">Login</button>
+      <input style="width:100px" type="button" class="btn btn-primary btn-lg" value=" Log In     " onclick="location.href = 'accounts/login';">
       <br>
       <a style="color:white;cursor:pointer"><em>Can't Login?</em></a>
       <br>
 
+
       </div>
     </div>
-  </body>
+
+
   </body>
 
 </html>
