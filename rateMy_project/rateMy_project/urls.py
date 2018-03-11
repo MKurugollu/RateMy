@@ -28,8 +28,8 @@ class MyRegistrationView(RegistrationView):
 
 
 urlpatterns = [
+    url(r'', include('ratemy.urls')),
     url(r'^$', views.landing, name='landing'),
-    url(r'^ratemy/', include('ratemy.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/register/$',
             MyRegistrationView.as_view(),
