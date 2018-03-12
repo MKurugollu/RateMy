@@ -24,6 +24,7 @@
         .navbar {
             background-color: #b0e0e6 !important;
             transition: all 0.5s;
+            box-shadow: 5px 5px 5px grey;
         }
 
         .navbar .navbar-brand {
@@ -276,10 +277,14 @@ window.onscroll = function() {
 var currentScrollPos = window.pageYOffset;
   if (prevScrollpos > currentScrollPos) {
     document.getElementById("navbar2").style.top = "0";
+    {% if user.is_authenticated %}
     document.getElementById("drop").style.top = "45px";
+    {% endif %}
   } else {
     document.getElementById("navbar2").style.top = "-60px";
+    {% if user.is_authenticated %}
     document.getElementById("drop").style.top = "-100px";
+    {% endif %}
   }
   prevScrollpos = currentScrollPos;
 }

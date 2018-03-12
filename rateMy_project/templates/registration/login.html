@@ -1,14 +1,67 @@
 {% extends "ratemy/base_bootstrap.html" %}
+
+{% block title_block %}
+    Log In
+{% endblock %}
+
+{%block style_block%}
+
+
+    .form-control.width{
+        width: 400px !important;
+        margin:auto;
+    }
+
+    .form-control.width:focus{
+        outline: none !important;
+        border:1px solid coral;
+    }
+
+    .form.align{
+        text-align:center !important;
+        display: table-cell;
+        margin: auto;
+    }
+
+    html, body {
+        height: 100%;
+    }
+
+    .required.bold{
+        font-weight: bold;
+    }
+
+    .btn-primary, .btn-primary:active {
+        background-color: Orange  !important;
+    }
+
+    .btn-primary:hover{
+       background-color:coral  !important;
+    }
+    .form_style{
+        position: relative;
+        top: 50%;
+        transform: translateY(25%);
+        padding: 15px;
+        box-shadow: 10px 10px 5px grey;
+    }
+
+{% endblock %}
+
 {% block body_block %}
-    <h1>Login</h1>
-    <form method="post" action=".">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Log in"/>
-        <input type="hidden" name="next" value="{{ next }}"/>
-    </form>
-    <p>
-        Not a member?
-        <a href="{% url 'registration_register' %}">Register</a>
-    </p>
+<form class="form_style" style="border-radius: 25px;margin:auto;background-color:powderblue;width:500px;color:white;" role="form" method="post" action=".">
+    <h1 class="form-signin-heading">Login</h1>
+    <br>
+    {% csrf_token %}
+    <div class="form-group align" >
+    <label for="inputUsername" class="sr-only">Username</label>
+    <input style="margin-bottom:5px;" type="text" id="id_username" class="form-control" name="username" placeholder="Username" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="id_password" class="form-control" name="password" placeholder="Password" required>
+    <input type="hidden" name="next" value="{{ next }}" />
+    </div>
+    <button style="position: relative; top: -5px;margin-bottom:5px" type="submit" class="btn btn-primary">Sign in</button>
+    <p>Not  a member? <a style="color:white;cursor:pointer" href="{% url 'registration_register' %}"><em>Register</em></a>!</p>
+</form>
+
 {% endblock %}
