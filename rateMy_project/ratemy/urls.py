@@ -6,5 +6,6 @@ urlpatterns = [
     url(r'faq/$', views.faq, name='faq'),
     url(r'home/$', views.home, name='home'),
     url(r'contact_us/$', views.contact_us, name='contact_us'),
+    url(r'search/$', views.search, name='search'),
 
 ]

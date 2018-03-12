@@ -212,6 +212,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'contact_us' %}" aria-pressed="true">Contact Us</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'search' %}" aria-pressed="true">Search the web</a>
+            </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
                 <a class="nav-link" href="#">Add a New Category</a>
