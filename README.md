@@ -30,7 +30,7 @@ can upload images (and maybe videos if possible) of the category and other users
       
       -upvoting
       
-      (Done) - user authentication
+      <del>- user authentication
       
       -show num. of upvotes, comments etc (similar to reddit)
       
@@ -38,7 +38,7 @@ can upload images (and maybe videos if possible) of the category and other users
       
       -subsrcibtion to categories so they can easy find it in their homepage
       
-      (Done) - Simple UI design (Css)
+      <del>- Simple UI design (Css)
       
       -show number of views
       
