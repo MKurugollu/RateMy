@@ -13,18 +13,26 @@
         <link rel="icon" href="{% static 'website-images/favicon.ico' %}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <style>
+            img {
+                width: 30%;
+                height: auto;
+            }
+        </style>
     </head>
 
   <!--colours i like: DarkTurquoise, DeepSkyBlue  -->
   <body scroll="no" style="background-color:PowderBlue;text-align:center;overflow: hidden" >
-  <img src='{% static "website-images/TestLogo.png" %}' alt="ratemy logo">
+  <img src='{% static "website-images/ratemylogoclear.png" %}' alt="ratemy logo">
 
-    <div class="search-container">
-    <form action="/action_page.php">
-      <input type="text" placeholder="Search.." name="search">
-      <button type="submit"><i class="fa fa-search"></i></button>
-    </form>
+  <div style="margin:auto;width:300px;" class="search-container">
+        <form action="/action_page.php">
+            <input type="text" placeholder="Search.." name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
   </div>
+
+  <a href="/home">Home</a>
 
     <div class="outer-div" style="text-align:center;padding-bottom:50px">
 

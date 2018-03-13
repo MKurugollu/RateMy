@@ -215,7 +215,7 @@
             </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link" href="#">Add a New Category</a>
+                <a class="nav-link" href="{% url 'add_category' %}">Add a New Category</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Profile</a>
@@ -223,10 +223,10 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="true">Dropdown</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01" id="drop">
+                <div style="box-shadow: 5px 5px 5px grey;" class="dropdown-menu" aria-labelledby="dropdown01" id="drop">
                     <a class="dropdown-item" href="#">Profile</a>
                     <a class="dropdown-item" href="#">Account Settings</a>
-                    <a class="dropdown-item" href="#">Add a New Category</a>
+                    <a class="dropdown-item" href="{% url 'add_category' %}">Add a New Category</a>
                     <a class="dropdown-item" href="{% url 'auth_logout' %}?next=/home">Log Out</a>
                 </div>
             </li>

@@ -25,3 +25,8 @@ def contact_us(request):
 def home(request):
     context_dict = {}
     return render(request, 'ratemy/home.html', context_dict)
+
+
+def add_category(request):
+    context_dict = {}
+    return render(request, 'ratemy/add_category.html', context_dict)
