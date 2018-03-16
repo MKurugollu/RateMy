@@ -1,44 +1,42 @@
 import os
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tango_with_django_project.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'rateMy_project.settings')
 
 import django
 
 django.setup()
 
-from rango.models import Category, Page
+from ratemy.models import Category, Post
 
 
 def populate():
-    ratemy_Barber_posts = [
-        {"title": "Official Python Tutorial", "url": "http://docs.python.org/2/tutorial/", "views": 32},
-        {"title": "How to Think like a Computer Scientist", "url": "http://www.greenteapress.com/thinkpython/",
-         "views": 16},
-        {"title": "Learn Python in 10 Minutes", "url": "http://www.korokithakis.net/tutorials/python/", "views": 8}, ]
-
-    django_pages = [
-        {"title": "Official Django Tutorial",
-         "url": "https://docs.djangoproject.com/en/1.9/intro/tutorial01/", "views": 32},
-        {"title": "Django Rocks",
-         "url": "http://www.djangorocks.com/", "views": 16},
-        {"title": "How to Tango with Django",
-         "url": "http://www.tangowithdjango.com/", "views": 8}]
-
-    other_pages = [
-        {"title": "Bottle", "url": "http://bottlepy.org/docs/dev/", "views": 32},
-        {"title": "Flask", "url": "http://flask.pocoo.org", "views": 16}]
-
-    cats = {"Python": {"pages": python_pages, "views": 128, "likes": 64},
-            "Django": {"pages": django_pages, "views": 64, "likes": 32},
-            "Other Frameworks": {"pages": other_pages, "views": 32, "likes": 16},
-            "Pascal": {"pages": [], "views": 32, "likes": 16},
-            "Perl": {"pages": [], "views": 32, "likes": 16},
-            "Php": {"pages": [], "views": 32, "likes": 16},
-            "Prolog": {"pages": [], "views": 32, "likes": 16},
-            "Programming": {"pages": [], "views": 32, "likes": 16},
-
+    barber_posts = [
+        {"title": "Bad Barber",
+         "picture": "post_images/barber-2.jpeg",
+         "likes": 300},
+        {"title": "Good Barber",
+         "picture": "post_images/barber-1.jpeg",
+         "likes": 69},
+        {"title": "West Glasgow Barber",
+         "picture": "post_images/barber-3.jpg",
+         "likes": 10}
+    ]
+    
+    faceswap_posts = [
+        {"title": "Good faceswap",
+         "picture": "post_images/faceswap-1.jpg",
+         "likes": 250},
+        {"title": "Bad faceswap",
+         "picture": "post_images/faceswap-2.jpg",
+         "likes": 25},
+        {"title": "Hilarious faceswap",
+         "picture": "post_images/faceswap-3.jpg",
+         "likes": 532}
+    ]
+    
+    cats = {"Barber": {"posts": barber_posts, "followers": 450},
+            "FaceSwap": {"posts": faceswap_posts, "followers": 300}
             }
-
     # if you want to add more catergories or pages, add them to the dictionaries above
 
     # The code below goes through the cats dictionary, then adds each category,
@@ -48,37 +46,38 @@ def populate():
     # for more information about using items() and how to iterate over a dictionary properly
 
     # Using the .items returns the key and the value. In this case the key is "Python", "Django" or "Other Frameworks" and the value (cat_data) is the corresponding dictionary in cats.
+
+
     for cat, cat_data in cats.items():
-        # c = add_cat(cat)
-        # Updated the population script to pass through the specific values for views and likes
-        c = add_cat(cat, cat_data["views"], cat_data["likes"])
-        for p in cat_data["pages"]:
-            add_page(c, p["title"], p["url"], p["views"])
+        c = add_cat(cat, cat_data["followers"])
+        for p in cat_data["posts"]:
+            add_post(c, p["title"], p["picture"], p["likes"])
 
     # Print out what we have added to the user.
     for c in Category.objects.all():
-        for p in Page.objects.filter(category=c):
+        for p in Post.objects.filter(category=c):
             print("- {0} - {1}".format(str(c), str(p)))
 
 
-def add_page(cat, title, url, views=0):
-    p = Page.objects.get_or_create(category=cat, title=title)[0]
-    p.url = url
-    p.views = views
+
+
+def add_post(cat, title, picture, likes):
+    p = Post.objects.get_or_create(category=cat, title=title)[0]
     # we need to save the changes we made!!
+    p.picture = picture
+    p.likes = likes
     p.save()
     return p
 
 
-def add_cat(name, views=0, likes=0):
+def add_cat(name, followers):
     c = Category.objects.get_or_create(name=name)[0]
-    c.views = views
-    c.likes = likes
+    c.followers = followers
     c.save()
     return c
 
 
 # Start execution here!
 if __name__ == '__main__':
-    print("Starting Rango population script...")
+    print("Starting RateMy population script...")
     populate()

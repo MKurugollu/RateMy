@@ -3,7 +3,64 @@
 {% block title_block %}
 Home
 {% endblock %}
+{%block style_block%}
+.center{
+    width:200px;
+    margin:0 auto;
+    text-align:left;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+    float: left;
+}
+
+.outline{
+ transition: 1s;
+}
+.outline:hover{
+    box-shadow: 0 0 2px 4px powderblue;
+}
+
+.fade{
+    opacity: 1;
+}
+
+{%endblock%}
 
 {% block body_block %}
     <p>This will be the Home page</p>
+
+{% if posts %}
+    <div >
+        {% for post in posts %}
+        <div class="outline"  style="width:100%;margin: 0 auto;padding: 10px;height:150px;margin: 20px 0;background-color:#F8F8F8">
+            {{ post.title }}
+            <img src="{{post.picture.url}}">
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <strong>There are no Posts present.</strong>
+{% endif %}
 {% endblock %}
+
+{%block script_block%}
+$(window).on("load",function() {
+  $(window).scroll(function() {
+    var windowBottom = $(this).scrollTop() + $(this).innerHeight();
+    $(".fade").each(function() {
+      /* Check the location of each desired element */
+      var objectBottom = $(this).offset().top + $(this).outerHeight();
+
+      /* If the element is completely within bounds of the window, fade it in */
+      if (objectBottom < windowBottom) { //object comes into view (scrolling down)
+        if ($(this).css("opacity")==0) {$(this).fadeTo(300,1);}
+      } else { //object goes out of view (scrolling up)
+        if ($(this).css("opacity")==1) {$(this).fadeTo(300,0);}
+      }
+    });
+  }).scroll(); //invoke scroll-handler on page-load
+});
+{%endblock%}

@@ -1,9 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from ratemy.models import Category, Post
 
 
 def landing(request):
-    context_dict = {}
+    category_list = Category.objects.order_by('-followers')[:5]
+    post_list = Post.objects.order_by('-likes')[:5]
+    context_dict = {'categories': category_list, 'posts': post_list}
+
     return render(request, 'ratemy/landing.html', context=context_dict) #second param is for the Directory of the hmtl template
 
 
@@ -23,7 +27,9 @@ def contact_us(request):
 
 
 def home(request):
-    context_dict = {}
+    post_list = Post.objects.order_by('-likes')[:20]
+
+    context_dict = {'posts': post_list}
     return render(request, 'ratemy/home.html', context_dict)
 
 
