@@ -35,7 +35,7 @@ def populate():
     ]
     
     cats = {"Barber": {"posts": barber_posts, "followers": 450},
-            "FaceSwap": {"posts": faceswap_posts, "followers": 300}
+            "Face Swap": {"posts": faceswap_posts, "followers": 300}
             }
     # if you want to add more catergories or pages, add them to the dictionaries above
 

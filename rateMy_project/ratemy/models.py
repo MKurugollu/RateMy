@@ -1,11 +1,17 @@
 from django.db import models
 from django.utils import timezone # For Created Time
+from django.template.defaultfilters import slugify # Used to slugify the urls
 # Create your models here.
-
 
 class Category(models.Model):
     name = models.CharField(max_length=18, unique=True) # name of the category
     followers = models.IntegerField(default=0) # num of authorised users following/liking(?) the category
+
+    slug = models.SlugField(unique=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Category, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name_plural = 'Categories'
@@ -16,12 +22,18 @@ class Category(models.Model):
 
 class Post(models.Model):
     category = models.ForeignKey(Category) # cat the post is in
-    title = models.CharField(max_length=26, unique=True) # title of post
+    title = models.CharField(max_length=26) # title of post
     # desc = models.CharField(max_length=300, blank = True) # description of post
     picture = models.ImageField(upload_to='post_images', blank=True) # image upload
     likes = models.IntegerField(default=0) # num of likes
     # author = models.ForeignKey('auth.User', on_delete=models.CASCADE) # the authorised user that created the post
     # created_date = models.DateTimeField(default=timezone.now) # date the post is created this is for ordering the posts
+
+    slug = models.SlugField(unique=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Post, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title

@@ -36,3 +36,27 @@ def home(request):
 def add_category(request):
     context_dict = {}
     return render(request, 'ratemy/add_category.html', context_dict)
+
+
+def show_category(request, category_name_slug):
+    context_dict = {}
+    try:
+        category = Category.objects.get(slug=category_name_slug)
+        posts = Post.objects.filter(category=category)
+        context_dict['posts'] = posts
+        context_dict['category'] = category
+    except:
+        context_dict['posts'] = None
+        context_dict['category'] = None
+
+    return render(request, 'ratemy/category.html', context_dict)
+
+
+def show_post(request, post_title_slug, category_name_slug):
+    context_dict = {}
+    try:
+        post = Post.objects.get(slug=post_title_slug)
+        context_dict['post'] = post
+    except:
+        context_dict['post'] = None
+    return render(request, 'ratemy/post.html', context_dict)

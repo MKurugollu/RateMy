@@ -21,19 +21,15 @@
                 height: auto;
             }
             .center{
-    width:200px;
-    margin:0 auto;
-    text-align:left;
-}
-
-
-
-
+                width:200px;
+                margin:0 auto;
+                text-align:left;
+            }
         </style>
     </head>
 
   <!--colours i like: DarkTurquoise, DeepSkyBlue  -->
-  <body scroll="no" style="background-color:PowderBlue;text-align:center;overflow: hidden" >
+  <body style="background-color:PowderBlue;text-align:center;">
   <img src='{% static "website-images/ratemylogoclear.png" %}' alt="ratemy logo">
 
   <div style="margin:auto;width:300px;" class="search-container">
@@ -49,7 +45,7 @@
       {% if categories %}
       <ul>
           {% for category in categories %}
-            <li>{{ category.name }}</li>
+          <li><a href="/ratemy/category/{{category.slug}}">{{ category.name }}</a></li>
           {% endfor %}
       </ul>
       {% else %}
@@ -59,7 +55,7 @@
     {%if posts%}
     <div style="background-color:red;height:300px:width:300px" class="w3-content w3-display-container">
         {% for post in posts %}
-        <img class="mySlides" src="{{post.picture.url}}" style="width:100%;height:100%;">
+        <a href="/ratemy/category/{{post.category.slug}}/{{post.slug}}"><img class="mySlides" src="{{post.picture.url}}" style="width:100%;height:100%;"></a>
         {% endfor %}
         <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
         <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
@@ -71,7 +67,7 @@
 
   <a href="/home">Home</a>
 
-    <div class="outer-div" style="text-align:center;padding-bottom:50px">
+    <div style="text-align:center;padding-bottom:50px">
 
       <div class="inner-div">
 
