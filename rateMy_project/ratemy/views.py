@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from ratemy.models import Category, Post
+from ratemy.forms import CategoryForm, PostForm
 
 
 def landing(request):
@@ -34,8 +35,36 @@ def home(request):
 
 
 def add_category(request):
-    context_dict = {}
-    return render(request, 'ratemy/add_category.html', context_dict)
+    form = CategoryForm()
+
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+            return home(request)
+        else:
+            print(form.errors)
+    return render(request, 'ratemy/add_category.html', {'form': form})
+
+
+def add_post(request, category_name_slug):
+    category = Category.objects.get(slug = category_name_slug)
+
+    form = PostForm()
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            if category:
+                post = form.save(commit=False)
+                post.category = category
+                post.likes = 0
+                post.save()
+                return show_category(request, category_name_slug)
+
+        else:
+            print(form.errors)
+    context_dict = {'form':form, 'category': category}
+    return render(request, 'ratemy/add_post.html', context_dict)
 
 
 def show_category(request, category_name_slug):
@@ -43,6 +72,7 @@ def show_category(request, category_name_slug):
     try:
         category = Category.objects.get(slug=category_name_slug)
         posts = Post.objects.filter(category=category)
+        posts = posts.order_by('-likes')
         context_dict['posts'] = posts
         context_dict['category'] = category
     except:
