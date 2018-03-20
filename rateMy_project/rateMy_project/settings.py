@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ratemy',
     'registration',
+    'django_countries',
 ]
 
 MIDDLEWARE_CLASSES = [

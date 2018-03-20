@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from ratemy.models import Category, Post
-from ratemy.forms import CategoryForm, PostForm
+from django.http import HttpResponse, HttpResponseRedirect
+from ratemy.models import Category, Post, UserProfile
+from ratemy.forms import CategoryForm, PostForm, UserProfileForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 
 def landing(request):
@@ -60,6 +61,7 @@ def add_post(request, category_name_slug):
             if category:
                 post = form.save(commit=False)
                 post.category = category
+                post.author = request.user
                 post.likes = 0
                 post.save()
                 return show_category(request, category_name_slug)
@@ -93,3 +95,52 @@ def show_post(request, post_title_slug, category_name_slug):
     except:
         context_dict['post'] = None
     return render(request, 'ratemy/post.html', context_dict)
+
+@login_required
+def register_profile(request):
+    form = UserProfileForm()
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            user_profile = form.save(commit=False)
+            user_profile.user = request.user
+            user_profile.save()
+            return redirect('home')
+        else:
+            print(form.errors)
+
+    context_dict = {'form':form}
+
+    return render(request, 'ratemy/profile_registration.html', context_dict)
+
+def profile(request, username):
+    try:
+        user = User.objects.get(username=username)
+    except User.DoesNotExist:
+        return redirect('index')
+    userprofile = UserProfile.objects.get_or_create(user=user)[0]
+    form =UserProfileForm(
+        {'picture': userprofile.picture, 'bio':userprofile.bio, 'age':userprofile.age, 'country':userprofile.country,
+         'first_name':userprofile.first_name, 'last_name':userprofile.last_name, 'fb':userprofile.fb,
+         'instagram':userprofile.instagram, 'twitter':userprofile.twitter}
+    )
+
+    posts = Post.objects.filter(author = user)
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
+    if form.is_valid():
+        form.save(commit=True)
+        return redirect('profile', user.username)
+    else:
+        print(form.errors)
+    return render(request, 'ratemy/profile.html', {'userprofile': userprofile, 'selecteduser': user, 'form': form, 'posts': posts})
+
+
+def list_profiles(request):
+    userprofile_list = UserProfile.objects.all()
+
+    return render(request, 'ratemy/list_profiles.html', {'userprofile_list': userprofile_list})
+
+

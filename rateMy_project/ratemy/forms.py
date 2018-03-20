@@ -1,6 +1,8 @@
 from django import forms
 from django.utils import timezone
-from ratemy.models import Post, Category
+from ratemy.models import Post, Category, UserProfile
+from django_countries.fields import LazyTypedChoiceField
+from django_countries import countries
 
 class CategoryForm(forms.ModelForm):
     name = forms.CharField(max_length=128,
@@ -24,3 +26,23 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('title', 'picture')
+
+class UserProfileForm(forms.ModelForm):
+    first_name = forms.CharField(required=True)
+    last_name = forms.CharField(required=True)
+
+    picture = forms.ImageField(required = True)
+
+    bio = forms.CharField(required=False)
+
+    age = forms.IntegerField(required=True)
+
+    fb = forms.URLField(required=False)
+    instagram = forms.URLField(required=False)
+    twitter = forms.URLField(required=False)
+
+    country = LazyTypedChoiceField(choices=countries)
+
+    class Meta:
+        model = UserProfile
+        exclude = ('user', )
