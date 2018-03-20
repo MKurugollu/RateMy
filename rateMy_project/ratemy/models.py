@@ -23,6 +23,7 @@ class Category(models.Model):
 
 
 class Post(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
     category = models.ForeignKey(Category) # cat the post is in
     title = models.CharField(max_length=26) # title of post
     # desc = models.CharField(max_length=300, blank = True) # description of post

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from ratemy.models import Category, Post
 from ratemy.forms import CategoryForm, PostForm
+from django.contrib.auth.decorators import login_required
 
 
 def landing(request):
@@ -34,6 +35,7 @@ def home(request):
     return render(request, 'ratemy/home.html', context_dict)
 
 
+@login_required
 def add_category(request):
     form = CategoryForm()
 
@@ -47,6 +49,7 @@ def add_category(request):
     return render(request, 'ratemy/add_category.html', {'form': form})
 
 
+@login_required
 def add_post(request, category_name_slug):
     category = Category.objects.get(slug = category_name_slug)
 
