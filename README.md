@@ -4,7 +4,7 @@ can upload images (and maybe videos if possible) of the category and other users
 
 # Stuff to do
 
-1) Do the Design Spec *BEFORE ANYTHING ELSE*. That includes:
+<del>1 Do the Design Spec *BEFORE ANYTHING ELSE*. That includes:
     -User personas
     -ER diagram
     -Specification
@@ -14,9 +14,9 @@ can upload images (and maybe videos if possible) of the category and other users
     
     Note: not only is this going to be submitted and worth 10%, but it will be beneficial to have a detailed plan before we start
    
-2) I created a django project for this so you guys need to just clone it to your computers.
+<del>2) I created a django project for this so you guys need to just clone it to your computers.
 
-3) I think we should map out everything first. Ie make simple views and links to the urls so we have the foundation to build up on
+<del>3) I think we should map out everything first. Ie make simple views and links to the urls so we have the foundation to build up on</del>
 
 4) Then after we can inlude the following featuers (feel free to add anymore):
 
@@ -30,7 +30,7 @@ can upload images (and maybe videos if possible) of the category and other users
       
       -upvoting
       
-      -user authentication
+      <del>- user authentication
       
       -show num. of upvotes, comments etc (similar to reddit)
       
@@ -38,7 +38,7 @@ can upload images (and maybe videos if possible) of the category and other users
       
       -subsrcibtion to categories so they can easy find it in their homepage
       
-      -Simple UI design (Css)
+      <del>- Simple UI design (Css)
       
       -show number of views
       
@@ -54,7 +54,7 @@ can upload images (and maybe videos if possible) of the category and other users
       
       -collapsing comment threads
       
-      -add NSFW tags (allow users to block them via user settings ala reddit)
+      <del>add NSFW tags (allow users to block them via user settings ala reddit)</del>
       
       -Users enter keywords and we show cateogories which might interest them
       
@@ -62,7 +62,7 @@ can upload images (and maybe videos if possible) of the category and other users
       
       -doing a unique rating for the website only
       
-      -Show similar categories before a user creates a category so there are no duplicates
+      <del>Show similar categories before a user creates a category so there are no duplicates</del>
       
       -Have custom urls (no idea how to do) - ie ratemy.cat.pythonanywhere.com, ratemy.poo.pt....
       
@@ -78,7 +78,7 @@ can upload images (and maybe videos if possible) of the category and other users
       
       
       
-      PS: Put a "(done)" in the front of features that are completed
+      PS: Strike a line through stuff we have completed
  
  
  

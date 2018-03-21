@@ -1,10 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.shortcuts import redirect
-from ratemy.webhose_search import run_query
+from ratemy.models import Category, Post
+from ratemy.forms import CategoryForm, PostForm
+
 
 def landing(request):
-    context_dict = {}
+    category_list = Category.objects.order_by('-followers')[:5]
+    post_list = Post.objects.order_by('-likes')[:5]
+    context_dict = {'categories': category_list, 'posts': post_list}
+
     return render(request, 'ratemy/landing.html', context=context_dict) #second param is for the Directory of the hmtl template
 
 
@@ -24,14 +28,80 @@ def contact_us(request):
 
 
 def home(request):
-    context_dict = {}
+    post_list = Post.objects.order_by('-likes')[:20]
+
+    context_dict = {'posts': post_list}
     return render(request, 'ratemy/home.html', context_dict)
 
-def search(request):
-    result_list = []
+
+def add_category(request):
+    form = CategoryForm()
+
     if request.method == 'POST':
-        query = request.POST['query'].strip()
-        if query:
-             # Run our Webhose function to get the results list!
-             result_list = run_query(query)
-    return render(request, 'ratemy/search.html', {'result_list': result_list})
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+            return home(request)
+        else:
+            print(form.errors)
+    return render(request, 'ratemy/add_category.html', {'form': form})
+
+
+def add_post(request, category_name_slug):
+    category = Category.objects.get(slug = category_name_slug)
+
+    form = PostForm()
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            if category:
+                post = form.save(commit=False)
+                post.category = category
+                post.likes = 0
+                post.save()
+                return show_category(request, category_name_slug)
+
+        else:
+            print(form.errors)
+    context_dict = {'form':form, 'category': category}
+    return render(request, 'ratemy/add_post.html', context_dict)
+
+
+def show_category(request, category_name_slug):
+    context_dict = {}
+    try:
+        category = Category.objects.get(slug=category_name_slug)
+        posts = Post.objects.filter(category=category)
+        posts = posts.order_by('-likes')
+        context_dict['posts'] = posts
+        context_dict['category'] = category
+    except:
+        context_dict['posts'] = None
+        context_dict['category'] = None
+
+
+
+    return render(request, 'ratemy/category.html', context_dict)
+
+
+def show_post(request, post_title_slug, category_name_slug):
+    context_dict = {}
+    try:
+        post = Post.objects.get(slug=post_title_slug)
+        context_dict['post'] = post
+    except:
+        context_dict['post'] = None
+    return render(request, 'ratemy/post.html', context_dict)
+
+def catagory_list(request):
+    category_list = Category.objects.all()
+
+
+    query=request.GET.get('search')
+    if query:
+        category_list= Category.objects.filter(name__icontains=query)
+
+
+    context_dict = {'categories': category_list}
+
+    return render(request, 'ratemy/catagory_list.html', context=context_dict)

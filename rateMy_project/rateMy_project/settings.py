@@ -31,13 +31,14 @@ ACCOUNT_ACTIVATION_DAYS = 7
 #If True, the user will be automatically logged in.
 REGISTRATION_AUTO_LOGIN = True
 # The page you want users to arrive at after they successfully log in
-LOGIN_REDIRECT_URL = '/ratemy/'
+LOGIN_REDIRECT_URL = '/home/'
 # The page users are directed to if they are not logged in,
 #  and are trying to access pages requiring authentication
 LOGIN_URL = '/accounts/login/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '2hg!1en6-2w!^n-p_211=246ggln+8f^#a#t5)x_apa@3cb_5y'

@@ -24,6 +24,7 @@
         .navbar {
             background-color: #b0e0e6 !important;
             transition: all 0.5s;
+            box-shadow: 5px 5px 5px grey;
         }
 
         .navbar .navbar-brand {
@@ -213,11 +214,11 @@
                 <a class="nav-link" href="{% url 'contact_us' %}" aria-pressed="true">Contact Us</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'search' %}" aria-pressed="true">Search the web</a>
+                <a class="nav-link" href="{% url 'catagory_list' %}" aria-pressed="true">Catagory List</a>
             </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link" href="#">Add a New Category</a>
+                <a class="nav-link" href="{% url 'add_category' %}">Add a New Category</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Profile</a>
@@ -225,14 +226,15 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="true">Dropdown</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01" id="drop">
+                <div style="box-shadow: 5px 5px 5px grey;" class="dropdown-menu" aria-labelledby="dropdown01" id="drop">
                     <a class="dropdown-item" href="#">Profile</a>
                     <a class="dropdown-item" href="#">Account Settings</a>
-                    <a class="dropdown-item" href="#">Add a New Category</a>
+                    <a class="dropdown-item" href="{% url 'add_category' %}">Add a New Category</a>
                     <a class="dropdown-item" href="{% url 'auth_logout' %}?next=/home">Log Out</a>
                 </div>
             </li>
             {% else %}
+
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'registration_register' %}">Sign Up</a>
             </li>
@@ -241,12 +243,7 @@
             </li>
             {% endif %}
         </ul>
-        <div class="search-container">
-            <form action="/action_page.php">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
+
     </div>
 
 </nav>
@@ -272,6 +269,10 @@
 <!--
 <script src="http://v4-alpha.getbootstrap.com/assets/js/vendor/holder.min.js"></script>
 -->
+<script>
+    {#%block script_block%}
+    {#%endblock%}
+</script>
 
 <script>
 var prevScrollpos = window.pageYOffset;
@@ -279,15 +280,21 @@ window.onscroll = function() {
 var currentScrollPos = window.pageYOffset;
   if (prevScrollpos > currentScrollPos) {
     document.getElementById("navbar2").style.top = "0";
+    {% if user.is_authenticated %}
     document.getElementById("drop").style.top = "45px";
+    {% endif %}
   } else {
     document.getElementById("navbar2").style.top = "-60px";
+    {% if user.is_authenticated %}
     document.getElementById("drop").style.top = "-100px";
+    {% endif %}
   }
   prevScrollpos = currentScrollPos;
 }
 
 </script>
+
+
 
 
 
@@ -299,5 +306,3 @@ var currentScrollPos = window.pageYOffset;
 
 </body>
 </html>
-
-

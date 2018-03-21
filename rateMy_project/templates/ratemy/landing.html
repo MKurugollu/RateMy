@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 {% load staticfiles %}
+{% load ratemy_template_tags %}
 
 <html lang="en">
 
@@ -13,20 +14,60 @@
         <link rel="icon" href="{% static 'website-images/favicon.ico' %}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <style>
+            img {
+                width: 30%;
+                height: auto;
+            }
+            .center{
+                width:200px;
+                margin:0 auto;
+                text-align:left;
+            }
+        </style>
     </head>
 
   <!--colours i like: DarkTurquoise, DeepSkyBlue  -->
-  <body scroll="no" style="background-color:PowderBlue;text-align:center;overflow: hidden" >
-  <img src='{% static "website-images/TestLogo.png" %}' alt="ratemy logo">
+  <body style="background-color:PowderBlue;text-align:center;">
+  <img src='{% static "website-images/ratemylogoclear.png" %}' alt="ratemy logo">
 
-    <div class="search-container">
-    <form action="/action_page.php">
-      <input type="text" placeholder="Search.." name="search">
-      <button type="submit"><i class="fa fa-search"></i></button>
-    </form>
+  <div style="margin:auto;width:300px;" class="search-container">
+        <form action="/ajax_search.html">
+            <input type="text" placeholder="Search.." name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
   </div>
 
-    <div class="outer-div" style="text-align:center;padding-bottom:50px">
+
+  <div class="center">
+      <h4>Top Categories</h4>
+      {% if categories %}
+      <ul>
+          {% for category in categories %}
+          <li><a href="/category/{{category.slug}}">{{ category.name }}</a></li>
+          {% endfor %}
+      </ul>
+      {% else %}
+        <strong>There are no categories present.</strong>
+      {% endif %}
+    <h4>Top Posts</h4>
+    {%if posts%}
+    <div style="background-color:red;height:300px:width:300px" class="w3-content w3-display-container">
+        {% for post in posts %}
+        <a href="/ratemy/category/{{post.category.slug}}/{{post.slug}}"><img class="mySlides" src="{{post.picture.url}}" style="width:100%;height:100%;"></a>
+        {% endfor %}
+        <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+        <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+    </div>
+      {% else %}
+    <strong>There are no Posts present.</strong>
+    {% endif %}
+  </div>
+
+  <a href="/home">Home</a>
+
+    <div style="text-align:center;padding-bottom:50px">
 
       <div class="inner-div">
 
@@ -44,5 +85,25 @@
 
 
   </body>
+
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  x[slideIndex-1].style.display = "block";
+}
+</script>
 
 </html>

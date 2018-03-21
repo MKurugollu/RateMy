@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{category.name}} - {{post.title}}</title>
+</head>
+<body>
+    <div>
+    {%if post%}
+    <img src="{{post.picture.url}}">
+    {%else%}
+        <p>Somethin' ain't workin' fam</p>
+    {%endif%}
+    </div>
+</body>
+</html>
