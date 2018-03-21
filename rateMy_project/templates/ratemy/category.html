@@ -9,8 +9,6 @@
     {% if category %}
         <h1>{{ category.name }}</h1>
 
-
-
         <div>
             <strong id="like_count">{{category.likes}}</strong> people like this Category
             {%if user.is_authenticated %}
@@ -20,7 +18,6 @@
                 </button>
             {% endif%}
         </div>
-
 
         {% if posts %}
             <ul>
@@ -41,6 +38,5 @@
         The specified category does not exist!
     {% endif %}
     </div>
-
 </body>
 </html>
