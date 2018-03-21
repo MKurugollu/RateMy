@@ -20,11 +20,12 @@ from django.conf.urls.static import static
 from django.conf.urls import include
 from ratemy import views
 from registration.backends.simple.views import RegistrationView
+from django.core.urlresolvers import reverse
 
 
 class MyRegistrationView(RegistrationView):
     def get_success_url(self, user):
-        return '/home/'
+        return reverse('register_profile')
 
 
 urlpatterns = [
@@ -35,5 +36,5 @@ urlpatterns = [
             MyRegistrationView.as_view(),
                 name='registration_register'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
-    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #tells Django to serve static conetent from MEDIA_URL
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #tells Django to serve static conetent from MEDIA_URL
 

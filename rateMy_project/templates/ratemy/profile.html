@@ -1,9 +1,10 @@
 {% extends 'ratemy/base_bootstrap.html' %}
 {% load staticfiles %}
-{% load el_pagination_tags %}
+{% load countries %}
 {% block title_block %}
-Home
+    {{selecteduser.username}} - Profile
 {% endblock %}
+
 {%block style_block%}
 .center{
     width:200px;
@@ -31,11 +32,27 @@ img {
 {%endblock%}
 
 {% block body_block %}
-    <p>This will be the Home page</p>
+    <img src="{{ MEDIA_URL}}{{userprofile.picture}}" width="300px"/>
+    <br>
+    <div>
+        {% if selecteduser.username == user.username %}
+            <form method="post" action="." enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Update" />
+            </form>
+        {% else %}
+            <p>Name: {{userprofile.first_name}} {{userprofile.last_name}}</p>
+            <p>age: {{userprofile.age}}</p>
+            <p>From: {{userprofile.country.name}}</p>
+            <p>Bio: {{userprofile.bio}}</p>
+            <p>Website:<a href="{{userprofile.fb}}">{{userprofile.fb}}</a></p>
 
-{% if posts %}
+        {% endif %}
+    </div>
+    <div id="edit_profile"></div>
+    {% if posts %}
     <div >
-        {% paginate posts %}
         {% for post in posts %}
         <div>
         <a href="/ratemy/category/{{post.category.slug}}/{{post.slug}}"><div class="outline"  style="width:100%;margin: 0 auto;padding: 10px;height:150px;margin: 20px 0;background-color:#F8F8F8"></a>
@@ -46,28 +63,8 @@ img {
             <p>{{post.likes}}</p>
         </div>
         {% endfor %}
-        {% show_pages %}
     </div>
-{% else %}
+    {% else %}
     <strong>There are no Posts present.</strong>
-{% endif %}
+    {% endif %}
 {% endblock %}
-
-{%block script_block%}
-$(window).on("load",function() {
-  $(window).scroll(function() {
-    var windowBottom = $(this).scrollTop() + $(this).innerHeight();
-    $(".fade").each(function() {
-      /* Check the location of each desired element */
-      var objectBottom = $(this).offset().top + $(this).outerHeight();
-
-      /* If the element is completely within bounds of the window, fade it in */
-      if (objectBottom < windowBottom) { //object comes into view (scrolling down)
-        if ($(this).css("opacity")==0) {$(this).fadeTo(300,1);}
-      } else { //object goes out of view (scrolling up)
-        if ($(this).css("opacity")==1) {$(this).fadeTo(300,0);}
-      }
-    });
-  }).scroll(); //invoke scroll-handler on page-load
-});
-{%endblock%}
