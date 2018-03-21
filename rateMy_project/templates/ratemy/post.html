@@ -1,9 +1,19 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>{{category.name}} - {{post.title}}</title>
 </head>
 <body>
+
+{% extends 'ratemy/base_bootstrap.html' %}
+{% load staticfiles %}
+{% block title_block %}
+Add Category
+{% endblock %}
+
+{% block body_block %}
+
     <div>
     {%if post%}
     <img src="{{post.picture.url}}">
@@ -11,5 +21,11 @@
         <p>Somethin' ain't workin' fam</p>
     {%endif%}
     </div>
+
 </body>
 </html>
+
+    <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="5"></div>
+    {#{{ request.build_absolute_uri }} #}
+{% endblock %}
+

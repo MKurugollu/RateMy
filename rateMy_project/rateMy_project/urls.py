@@ -20,11 +20,12 @@ from django.conf.urls.static import static
 from django.conf.urls import include
 from ratemy import views
 from registration.backends.simple.views import RegistrationView
+from django.core.urlresolvers import reverse
 
 
 class MyRegistrationView(RegistrationView):
     def get_success_url(self, user):
-        return '/home/'
+        return reverse('register_profile')
 
 
 urlpatterns = [
