@@ -1,9 +1,11 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from ratemy.models import Category, Post, UserProfile
 from ratemy.forms import CategoryForm, PostForm, UserProfileForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
 
 def landing(request):
@@ -106,7 +108,7 @@ def register_profile(request):
             user_profile = form.save(commit=False)
             user_profile.user = request.user
             user_profile.save()
-            return redirect('home')
+            return ('home')
         else:
             print(form.errors)
 
@@ -118,7 +120,7 @@ def profile(request, username):
     try:
         user = User.objects.get(username=username)
     except User.DoesNotExist:
-        return redirect('index')
+        return HttpResponseRedirect(reverse('home'))
     userprofile = UserProfile.objects.get_or_create(user=user)[0]
     form =UserProfileForm(
         {'picture': userprofile.picture, 'bio':userprofile.bio, 'age':userprofile.age, 'country':userprofile.country,
@@ -132,7 +134,7 @@ def profile(request, username):
         form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
     if form.is_valid():
         form.save(commit=True)
-        return redirect('profile', user.username)
+        # return HttpResponseRedirect(reverse('Home'))
     else:
         print(form.errors)
     return render(request, 'ratemy/profile.html', {'userprofile': userprofile, 'selecteduser': user, 'form': form, 'posts': posts})
