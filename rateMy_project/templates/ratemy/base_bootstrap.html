@@ -222,38 +222,21 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'contact_us' %}" aria-pressed="true">Contact Us</a>
             </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'catagory_list' %}" aria-pressed="true">Catagory List</a>
-            </li>
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'add_category' %}">Add a New Category</a>
-            </li>
-
- 
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'list_profiles' %}" aria-pressed="true">List Profiles</a>
             </li>
             {% if user.is_authenticated %}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
-
-                   aria-haspopup="true" aria-expanded="true">Dropdown</a>
-                <div style="box-shadow: 5px 5px 5px grey;" class="dropdown-menu" aria-labelledby="dropdown01" id="drop">
-                    <a class="dropdown-item" href="#">Profile</a>
-
                    aria-haspopup="true" aria-expanded="true">{{user.username}}</a>
                 <div style="box-shadow: 5px 5px 5px grey;" class="dropdown-menu" aria-labelledby="dropdown01" id="drop">
                     <a class="dropdown-item" href="{% url 'profile' user.username %}">Your Profile</a>
-
                     <a class="dropdown-item" href="#">Account Settings</a>
                     <a class="dropdown-item" href="{% url 'add_category' %}">Add a New Category</a>
                     <a class="dropdown-item" href="{% url 'auth_logout' %}?next=/home">Log Out</a>
                 </div>
             </li>
             {% else %}
-
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'registration_register' %}">Sign Up</a>
             </li>
@@ -262,7 +245,12 @@
             </li>
             {% endif %}
         </ul>
-
+        <div class="search-container">
+            <form action="/action_page.php">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
     </div>
 
 </nav>
@@ -326,3 +314,5 @@ var currentScrollPos = window.pageYOffset;
 
 </body>
 </html>
+
+

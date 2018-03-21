@@ -1,16 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
-from ratemy.models import Category, Post
-from ratemy.forms import CategoryForm, PostForm
-
 from ratemy.models import Category, Post, UserProfile
 from ratemy.forms import CategoryForm, PostForm, UserProfileForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-
 
 
 def landing(request):
@@ -43,10 +38,7 @@ def home(request):
     return render(request, 'ratemy/home.html', context_dict)
 
 
-
-
 @login_required
-
 def add_category(request):
     form = CategoryForm()
 
@@ -60,10 +52,7 @@ def add_category(request):
     return render(request, 'ratemy/add_category.html', {'form': form})
 
 
-
-
 @login_required
-
 def add_post(request, category_name_slug):
     category = Category.objects.get(slug = category_name_slug)
 
@@ -74,10 +63,7 @@ def add_post(request, category_name_slug):
             if category:
                 post = form.save(commit=False)
                 post.category = category
-
-
                 post.author = request.user
-
                 post.likes = 0
                 post.save()
                 return show_category(request, category_name_slug)
@@ -89,45 +75,6 @@ def add_post(request, category_name_slug):
 
 
 def show_category(request, category_name_slug):
-
-    context_dict = {}
-    try:
-        category = Category.objects.get(slug=category_name_slug)
-        posts = Post.objects.filter(category=category)
-        posts = posts.order_by('-likes')
-        context_dict['posts'] = posts
-        context_dict['category'] = category
-    except:
-        context_dict['posts'] = None
-        context_dict['category'] = None
-
-
-
-    return render(request, 'ratemy/category.html', context_dict)
-
-
-def show_post(request, post_title_slug, category_name_slug):
-    context_dict = {}
-    try:
-        post = Post.objects.get(slug=post_title_slug)
-        context_dict['post'] = post
-    except:
-        context_dict['post'] = None
-    return render(request, 'ratemy/post.html', context_dict)
-
-def catagory_list(request):
-    category_list = Category.objects.all()
-
-
-    query=request.GET.get('search')
-    if query:
-        category_list= Category.objects.filter(name__icontains=query)
-
-
-    context_dict = {'categories': category_list}
-
-    return render(request, 'ratemy/catagory_list.html', context=context_dict)
-
     context_dict = {}
     try:
         category = Category.objects.get(slug=category_name_slug)

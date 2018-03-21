@@ -15,21 +15,6 @@ from ratemy.models import Category, Post
 def populate():
     barber_posts = [
         {"title": "Bad Barber",
-
-         "picture": "post_images/barber-2.jpeg",
-         "likes": 10,
-         # "author": User.objects.get(username=''),
-         "date": timezone.now},
-        {"title": "Good Barber",
-         "picture": "post_images/barber-1.jpeg",
-         "likes": 69,
-         # "author": User.objects.get(username=''),
-         "date": timezone.now},
-        {"title": "West Glasgow Barber",
-         "picture": "post_images/barber-3.jpg",
-         "likes": 300,
-         # "author": User.objects.get(username=''),
-
          "picture": "post_images_pop/barber-2.jpeg",
          "likes": 10,
          "author": User.objects.get(username='admin'),
@@ -43,27 +28,11 @@ def populate():
          "picture": "post_images_pop/barber-3.jpg",
          "likes": 300,
          "author": User.objects.get(username='admin'),
-
          "date": timezone.now}
     ]
     
     faceswap_posts = [
         {"title": "Good faceswap",
-
-         "picture": "post_images/faceswap-1.jpg",
-         "likes": 250,
-         # "author": User.objects.get(username=''),
-         "date": timezone.now},
-        {"title": "Bad faceswap",
-         "picture": "post_images/faceswap-2.jpg",
-         "likes": 25,
-         # "author": User.objects.get(username=''),
-         "date": timezone.now},
-        {"title": "Hilarious faceswap",
-         "picture": "post_images/faceswap-3.jpg",
-         "likes": 532,
-         # "author": User.objects.get(username=''),
-
          "picture": "post_images_pop/faceswap-1.jpg",
          "likes": 250,
          "author": User.objects.get(username='admin'),
@@ -77,7 +46,6 @@ def populate():
          "picture": "post_images_pop/faceswap-3.jpg",
          "likes": 532,
          "author": User.objects.get(username='admin'),
-
          "date": timezone.now}
     ]
     
@@ -98,11 +66,7 @@ def populate():
     for cat, cat_data in cats.items():
         c = add_cat(cat, cat_data["followers"])
         for p in cat_data["posts"]:
-
-            add_post(c, p["title"], p["picture"], p["likes"], p["date"])  #p["author"],
-
             add_post(c, p["title"], p["picture"], p["likes"], p["date"], p["author"])  #
-
 
     # Print out what we have added to the user.
     for c in Category.objects.all():
@@ -112,21 +76,12 @@ def populate():
 
 
 
-
-def add_post(cat, title, picture, likes,date) :# author,
-    p = Post.objects.get_or_create(category=cat, title=title)[0]
-    p.picture = picture
-    p.likes = likes
-    p.date = date
-    # p.author = author
-
 def add_post(cat, title, picture, likes, date, author) :# author,
     p = Post.objects.get_or_create(category=cat, title=title)[0]
     p.picture = picture
     p.likes = likes
     p.author = author
     p.date = date
-
     p.save()
     return p
 
