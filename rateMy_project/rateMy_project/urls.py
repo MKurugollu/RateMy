@@ -36,5 +36,5 @@ urlpatterns = [
             MyRegistrationView.as_view(),
                 name='registration_register'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #tells Django to serve static conetent from MEDIA_URL
+    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #tells Django to serve static conetent from MEDIA_URL
 
