@@ -3,4 +3,5 @@ db.sqlite3
 rateMy_project/media/profile_images
 rateMy_project/media/post_images
 .idea/
+venv/
 

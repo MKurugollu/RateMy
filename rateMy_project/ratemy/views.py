@@ -146,3 +146,15 @@ def list_profiles(request):
     return render(request, 'ratemy/list_profiles.html', {'userprofile_list': userprofile_list})
 
 
+def catagory_list(request):
+    category_list = Category.objects.all()
+
+
+    query=request.GET.get('search')
+    if query:
+        category_list= Category.objects.filter(name__icontains=query)
+
+
+    context_dict = {'categories': category_list}
+
+    return render(request, 'ratemy/catagory_list.html', context=context_dict)
