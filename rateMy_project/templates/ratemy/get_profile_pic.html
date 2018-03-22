@@ -1,9 +1,12 @@
 {% load staticfiles %}
 {% load ratemy_template_tags %}
-    {% if userprofile %}
+    {% if userprofiles %}
         {% for u in userprofile %}
-        {% if userprofile.username == user.username %}
-        <img style="border-radius: 50%" src="{{ MEDIA_URL }}{{ u.picture.url }}" alt="pls work" width="64px"/>
+        {% if u == user.username %}
+        <p>if working</p>
+        <img style="border-radius: 50%;height:40px" src="{{ MEDIA_URL }}{{ u.picture.url }}" alt="pls work"/>
+        {% else %}
+        <p>if not working</p>
         {% endif %}
         {% endfor %}
     {% else %}

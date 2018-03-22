@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.db.models import Q
+from el_pagination.decorators import page_template
 
 
 def landing(request):
@@ -31,12 +32,13 @@ def contact_us(request):
     context_dict = {}
     return render(request, 'ratemy/contact_us.html', context_dict)
 
+@page_template('myapp/home.html')
+def home(request, template = 'ratemy/home.html', extra_context=None):
 
-def home(request):
-    post_list = Post.objects.order_by('-likes')[:20]
-
-    context_dict = {'posts': post_list}
-    return render(request, 'ratemy/home.html', context_dict)
+    context_dict = {'posts': Post.objects.order_by('-likes'),}
+    if extra_context is not None:
+        context_dict.update(extra_context)
+    return render(request, template, context_dict)
 
 
 @login_required
@@ -116,7 +118,7 @@ def register_profile(request):
             user_profile = form.save(commit=False)
             user_profile.user = request.user
             user_profile.save()
-            return ('home')
+            return HttpResponseRedirect(reverse('home'))
         else:
             print(form.errors)
 

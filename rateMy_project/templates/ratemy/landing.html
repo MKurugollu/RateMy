@@ -72,14 +72,16 @@
 
       <div class="inner-div">
 
-
+    {% if user.is_authenticated %}
+          <input type="button" class="btn btn-primary btn-lg" value="Log Out" onclick="location.href = '{% url 'auth_logout' %}?next=/home';">
+    {% else %}
       <input type="button" class="btn btn-primary btn-lg" value="Sign Up" onclick="location.href = 'accounts/register';">
       <hr style="height:3px;width:100px;margin-top:10px;margin-bottom:10px" />
       <input style="width:100px" type="button" class="btn btn-primary btn-lg" value="Log In" onclick="location.href = 'accounts/login';">
       <br>
-      <a style="color:white;cursor:pointer"><em>Can't Login?</em></a>
+      <!--<a href="/password/reset" style="color:white;cursor:pointer"><em>Can't Login?</em></a>-->
       <br>
-
+    {% endif %}
 
       </div>
     </div>
