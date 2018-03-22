@@ -9,6 +9,10 @@
     {% if category %}
         <h1>{{ category.name }}</h1>
 
+        <ul>
+
+        </ul>
+            <a href="/ratemy/category/{{category.slug}}"><img src="{{MEDIA_URL}}{{category.image}}"></a>
         <div>
             <strong id="like_count">{{category.likes}}</strong> people like this Category
             {%if user.is_authenticated %}

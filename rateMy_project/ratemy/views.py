@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.db.models import Q
 
 
 def landing(request):
@@ -152,7 +153,8 @@ def catagory_list(request):
 
     query=request.GET.get('search')
     if query:
-        category_list= Category.objects.filter(name__icontains=query)
+
+        category_list= Category.objects.filter(Q(name__icontains=query))
 
 
     context_dict = {'categories': category_list}

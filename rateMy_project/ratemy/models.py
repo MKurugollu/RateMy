@@ -9,6 +9,7 @@ from django_countries.fields import CountryField
 class Category(models.Model):
     name = models.CharField(max_length=18, unique=True) # name of the category
     followers = models.IntegerField(default=0) # num of authorised users following/liking(?) the category
+    image = models.ImageField(upload_to='category_images') # image upload
 
     slug = models.SlugField(unique=True)
 
