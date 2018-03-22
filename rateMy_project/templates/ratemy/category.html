@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{category.name}}</title>
-</head>
-<body>
+{% extends 'ratemy/base_bootstrap.html' %}
+{% load staticfiles %}
+{% block title_block %}
+    {{category.name}}
+{% endblock %}
 
+
+{% block body_block %}
 <div class="search-container">
             <form  method="GET" action="">
                 <input  type="text" placeholder="Search.." name="search" value="{{ request.GET.search }}">
@@ -55,5 +56,4 @@
         The specified category does not exist!
     {% endif %}
     </div>
-</body>
-</html>
+{% endblock %}
