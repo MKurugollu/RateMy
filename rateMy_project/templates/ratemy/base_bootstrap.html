@@ -223,10 +223,10 @@
                 <a class="nav-link" href="{% url 'contact_us' %}" aria-pressed="true">Contact Us</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'list_profiles' %}" aria-pressed="true">List Profiles</a>
+                <a class="nav-link" href="{% url 'list_profiles' %}" aria-pressed="true">Profiles</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'catagory_list' %}" aria-pressed="true">Catagory List</a>
+                <a class="nav-link" href="{% url 'catagory_list' %}" aria-pressed="true">Categories</a>
             </li>
             {% if user.is_authenticated %}
             <li class="nav-item dropdown">
@@ -239,8 +239,11 @@
                     <a class="dropdown-item" href="{% url 'auth_logout' %}?next=/home">Log Out</a>
                 </div>
             </li>
-            {% else %}
             <li class="nav-item">
+                {% find_userprofile %}
+            </li>
+            {% else %}
+            <li class="nav-it1em">
                 <a class="nav-link" href="{% url 'registration_register' %}">Sign Up</a>
             </li>
             <li class="nav-item">
