@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 
 django.setup()
 
-from ratemy.models import Category, Post
+from ratemy.models import Category, Post, UserProfile
 
 
 def populate():
@@ -91,6 +91,17 @@ def populate():
                         "image":"category_images/pokemon.PNG",
                         "author": User.objects.get(username='admin')}
             }
+    users= {'Steve':{"first_name": "Hassan",
+                                   "last_name": "Khan",
+                                   "age":19,
+                                   "country":'Pakistan',
+                                   "fb":'',
+                                   "instagram":"",
+                                   "twitter":"",
+                                   "picture":"category_images/pokemon.PNG",
+                                   "bio":"I like pokemon"
+
+    }}
 
     # if you want to add more catergories or pages, add them to the dictionaries above
 
@@ -113,6 +124,12 @@ def populate():
         for p in Post.objects.filter(category=c):
             print("- {0} - {1}".format(str(c), str(p)))
 
+    for user,user_data in users.items():
+        u=add_user(user,user_data['first_name'], user_data['last_name'], user_data['age'],user_data['country'],
+                   user_data['fb'], user_data['instagram'], user_data['twitter'], user_data['picture'], user_data['bio'])
+    for u in UserProfile.objects.all():
+        print("- {0} -".format(str(u)))
+
 
 
 
@@ -134,6 +151,19 @@ def add_cat(name, followers,image, author):
     c.save()
     return c
 
+def add_user(user,first_name, last_name, age, country,fb, instagram, twitter, picture,bio):
+    u=UserProfile.objects.get_or_create(user=user)[0]
+    u.first_name=first_name
+    u.last_name=last_name
+    u.age=age
+    u.country=country
+    u.fb=fb
+    u.instagram=instagram
+    u.twitter=twitter
+    u.picture=picture
+    u.bio=bio
+    u.save()
+    return u
 
 
 # Start execution here!

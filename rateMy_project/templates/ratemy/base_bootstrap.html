@@ -4,7 +4,7 @@
 <head>
     {% load ratemy_template_tags %}
     {% load staticfiles %}
-
+    {% load el_pagination_tags %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -235,7 +235,7 @@
             {% if user.is_authenticated %}
             <li style="position: absolute;right: 80px; margin-bottom: -50px" class="nav-item dropdown navbar-right">
                 <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="true">{% find_userprofile %}</a>
+                   aria-haspopup="true" aria-expanded="true">{{user.username}}</a>
                 <div style="box-shadow: 5px 5px 5px grey;" class="dropdown-menu" aria-labelledby="dropdown01" id="drop">
                     <a class="dropdown-item" href="{% url 'profile' user.username %}">Your Profile</a>
                     <a class="dropdown-item" href="{% url 'add_category' %}">Add a New Category</a>
@@ -274,6 +274,8 @@
         integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB"
         crossorigin="anonymous"></script>
 <script src="http://v4-alpha.getbootstrap.com/dist/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="{% static 'js/jquery.js' %}"></script>
 <script src="{% static 'js/ratemy-ajax.js' %}"></script>
 <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
 <!--
@@ -294,17 +296,15 @@ var currentScrollPos = window.pageYOffset;
     document.getElementById("drop").style.top = "45px";
     {% endif %}
   } else {
-    document.getElementById("navbar2").style.top = "-60px";
+    document.getElementById("navbar2").style.top = "-70px";
     {% if user.is_authenticated %}
-    document.getElementById("drop").style.top = "-100px";
+    document.getElementById("drop").style.top = "-110px";
     {% endif %}
   }
   prevScrollpos = currentScrollPos;
 }
 
 </script>
-
-
 
 
 

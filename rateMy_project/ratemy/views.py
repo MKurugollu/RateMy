@@ -4,9 +4,9 @@ from ratemy.models import Category, Post, UserProfile
 from ratemy.forms import CategoryForm, PostForm, UserProfileForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.db.models import Q
+from el_pagination.decorators import page_template
 
 
 def landing(request):
@@ -31,12 +31,13 @@ def contact_us(request):
     context_dict = {}
     return render(request, 'ratemy/contact_us.html', context_dict)
 
+@page_template('myapp/home.html')
+def home(request, template = 'ratemy/home.html', extra_context=None):
 
-def home(request):
-    post_list = Post.objects.order_by('-likes')[:20]
-
-    context_dict = {'posts': post_list}
-    return render(request, 'ratemy/home.html', context_dict)
+    context_dict = {'posts': Post.objects.order_by('-likes'),}
+    if extra_context is not None:
+        context_dict.update(extra_context)
+    return render(request, template, context_dict)
 
 
 @login_required
@@ -81,13 +82,16 @@ def show_category(request, category_name_slug):
 
     try:
         category = Category.objects.get(slug=category_name_slug)
+        posts = Post.objects.filter(category=category)
+
         if query:
-            posts= Post.objects.filter(category=category and Q(title__icontains=query))
+            posts= Post.objects.filter(category=category) & Post.objects.filter(Q(title__icontains=query))
+            context_dict['posts'] = posts
+            context_dict['category'] = category
         else:
-            posts = Post.objects.filter(category=category)
-        posts = posts.order_by('-likes')
-        context_dict['posts'] = posts
-        context_dict['category'] = category
+            posts = posts.order_by('-likes')
+            context_dict['posts'] = posts
+            context_dict['category'] = category
     except:
         context_dict['posts'] = None
         context_dict['category'] = None
@@ -116,7 +120,7 @@ def register_profile(request):
             user_profile = form.save(commit=False)
             user_profile.user = request.user
             user_profile.save()
-            return ('home')
+            return HttpResponseRedirect(reverse('home'))
         else:
             print(form.errors)
 
@@ -176,3 +180,17 @@ def catagory_list(request):
     context_dict = {'categories': category_list}
 
     return render(request, 'ratemy/catagory_list.html', context=context_dict)
+
+@login_required
+def follow_category(request):
+    cat_id = None
+    if request.method == 'GET':
+        cat_id = request.GET['category_id']
+    followers = 0
+    if cat_id:
+        cat = Category.objects.get(id=(cat_id))
+        if cat:
+            followers= cat.likes + 1
+            cat.followers = followers
+            cat.save()
+    return HttpResponse(followers)

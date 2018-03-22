@@ -6,13 +6,21 @@
 
 
 {% block body_block %}
-<div class="search-container">
+        <div class="search-container">
             <form  method="GET" action="">
                 <input  type="text" placeholder="Search.." name="search" value="{{ request.GET.search }}">
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
         </div>
 
+        <div>
+	<strong id="like_count">{{ category.followers}}</strong> people like this category
+	{% if user.is_authenticated %}
+		<button id="likes" data-catid="{{category.id}}" class="btn btn-primary btn-sm" type="button">
+			Like
+		</button>
+	{% endif %}
+	</div>
     <div>
         <a href="/category/{{category.slug}}/add_post">Add a page</a>
 
@@ -26,16 +34,9 @@
         <ul>
 
         </ul>
-            <a href="/ratemy/category/{{category.slug}}"><img src="{{MEDIA_URL}}{{category.image}}"></a>
-        <div>
-            <strong id="like_count">{{category.likes}}</strong> people like this Category
-            {%if user.is_authenticated %}
-                <button id="likes" data-catid="{{category.id}}"
-                    class = "btn btn-primary btn-sm" type = "button">
-                    Like
-                </button>
-            {% endif%}
-        </div>
+            <a href="/ratemy/category/{{category.slug}}"><img height="auto" width="300px" src="{{MEDIA_URL}}{{category.image}}"></a>
+
+
 
         {% if posts %}
             <ul>

@@ -9,7 +9,6 @@ register = template.Library()
 #     return {'cats': Category.objects.all(), 'act_cat': cat}
 
 @register.inclusion_tag('ratemy/get_profile_pic.html')
-def find_userprofile():
+def find_userprofile(cat = None):
 
-    userprofile = UserProfile.objects.all()
-    return {'userprofile': userprofile}
+    return {'userprofiles': UserProfile.objects.all(), 'act_act': cat}

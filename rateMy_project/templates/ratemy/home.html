@@ -1,6 +1,7 @@
 {% extends 'ratemy/base_bootstrap.html' %}
 {% load staticfiles %}
 {% load el_pagination_tags %}
+{% include page_template %}
 {% block title_block %}
 Home
 {% endblock %}
@@ -31,7 +32,7 @@ img {
 {%endblock%}
 
 {% block body_block %}
-    <p>This will be the Home page</p>
+    <h1></h1>
 
 {% if posts %}
     <div >
@@ -70,4 +71,4 @@ $(window).on("load",function() {
     });
   }).scroll(); //invoke scroll-handler on page-load
 });
-{%endblock%}
+{% endblock %}
