@@ -4,8 +4,27 @@
 About
 {% endblock %}
 
+{%block style_block%}
+
+{%endblock%}
 {% block body_block %}
+
     <div>
-        <p  style="background-color:red; font-family:arial; ">This will be the about page</p>
+	
+        <pre  style="color:red ; background-color: skyblue; font-family:arial;font-size:28PX ">
+	<b>RateMy</b> is a rating and discussion website. 
+	Registered members can create categories in which other registered members can upload
+	images and text posts. These posts can be upvoted/downvoted by
+	fellow members. The website also promotes internet discussion with	
+	the use of threaded comments in which people can debate and
+	criticise the upload.
+	</pre>
+	<img src='{% static "images/Team.JPG" %}' alt="Image of our Team" width= auto height=980 >
+	
+	<pre style="color: red;font-family:arial;font-size:28PX " >
+	Project created by: Peter Maltzaff, Mustafa Kuruogllu, Hassan Khan, Muhammad Fahd Asif.  
+	</pre>
+	
     </div>
+
 {% endblock %}
