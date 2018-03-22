@@ -1,6 +1,11 @@
-
-    {% if find_userprofile %}
-    <p>works</p>
+{% load staticfiles %}
+{% load ratemy_template_tags %}
+    {% if userprofile %}
+        {% for u in userprofile %}
+        {% if userprofile.username == user.username %}
+        <img style="border-radius: 50%" src="{{ MEDIA_URL }}{{ u.picture.url }}" alt="pls work" width="64px"/>
+        {% endif %}
+        {% endfor %}
     {% else %}
     <p>y u no work</p>
     {% endif %}
