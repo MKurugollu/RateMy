@@ -186,6 +186,10 @@
         margin: 0;
         padding: 14px;
       }
+
+     .mr-auto {
+    margin-right: 0 !important;
+}
     </style>
 
 </head>
@@ -206,7 +210,7 @@
             data-target="#navbar" aria-controls="navbar" aria-expanded="true" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="/">RateMy</a>
+    <a  href="/" ><img src='{% static "website-images/ratemylogoclear.png" %}' alt="ratemy logo" width="70px"/></a>
 
     <div class="collapse navbar-collapse" id="navbar">
         <ul class="navbar-nav mr-auto">
@@ -229,24 +233,21 @@
                 <a class="nav-link" href="{% url 'catagory_list' %}" aria-pressed="true">Categories</a>
             </li>
             {% if user.is_authenticated %}
-            <li class="nav-item dropdown">
+            <li style="position: absolute;right: 80px; margin-bottom: -50px" class="nav-item dropdown navbar-right">
                 <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="true">{{user.username}}</a>
+                   aria-haspopup="true" aria-expanded="true">{% find_userprofile %}</a>
                 <div style="box-shadow: 5px 5px 5px grey;" class="dropdown-menu" aria-labelledby="dropdown01" id="drop">
                     <a class="dropdown-item" href="{% url 'profile' user.username %}">Your Profile</a>
-                    <a class="dropdown-item" href="#">Account Settings</a>
                     <a class="dropdown-item" href="{% url 'add_category' %}">Add a New Category</a>
                     <a class="dropdown-item" href="{% url 'auth_logout' %}?next=/home">Log Out</a>
                 </div>
             </li>
-            <li class="nav-item">
-                {% find_userprofile %}
-            </li>
+
             {% else %}
-            <li class="nav-it1em">
+            <li style="position: absolute;right: 150px" class="nav-it1em">
                 <a class="nav-link" href="{% url 'registration_register' %}">Sign Up</a>
             </li>
-            <li class="nav-item">
+            <li style="position: absolute;right: 80px" class="nav-item">
                 <a class="nav-link" href="{% url 'auth_login' %}">Login</a>
             </li>
             {% endif %}

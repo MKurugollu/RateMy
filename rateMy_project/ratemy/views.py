@@ -77,15 +77,22 @@ def add_post(request, category_name_slug):
 
 def show_category(request, category_name_slug):
     context_dict = {}
+    query=request.GET.get('search')
+
     try:
         category = Category.objects.get(slug=category_name_slug)
-        posts = Post.objects.filter(category=category)
+        if query:
+            posts= Post.objects.filter(category=category and Q(title__icontains=query))
+        else:
+            posts = Post.objects.filter(category=category)
         posts = posts.order_by('-likes')
         context_dict['posts'] = posts
         context_dict['category'] = category
     except:
         context_dict['posts'] = None
         context_dict['category'] = None
+
+
 
     return render(request, 'ratemy/category.html', context_dict)
 
@@ -144,7 +151,16 @@ def profile(request, username):
 def list_profiles(request):
     userprofile_list = UserProfile.objects.all()
 
-    return render(request, 'ratemy/list_profiles.html', {'userprofile_list': userprofile_list})
+    query=request.GET.get('search')
+    if query:
+
+        userprofile_list= Category.objects.filter(Q(author__username__icontains=query))
+
+
+    context_dict = {'categories': userprofile_list}
+
+
+    return render(request, 'ratemy/list_profiles.html', context=context_dict)
 
 
 def catagory_list(request):
@@ -154,7 +170,7 @@ def catagory_list(request):
     query=request.GET.get('search')
     if query:
 
-        category_list= Category.objects.filter(Q(name__icontains=query))
+        category_list= Category.objects.filter(Q(name__icontains=query) | Q(author__username__icontains=query) )
 
 
     context_dict = {'categories': category_list}
