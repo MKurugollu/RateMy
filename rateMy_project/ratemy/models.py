@@ -10,7 +10,7 @@ class Category(models.Model):
     name = models.CharField(max_length=18, unique=True) # name of the category
     followers = models.IntegerField(default=0) # num of authorised users following/liking(?) the category
     image = models.ImageField(upload_to='category_images') # image upload
-    author = models.ForeignKey(settings.AUTH_USER_MODEL)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
     slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
@@ -45,7 +45,7 @@ class Post(models.Model):
 
 class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User model instance.
-    user = models.OneToOneField(User)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
     # These will be the links to the social media of the User
 
     first_name = models.CharField(max_length=30, blank=False)

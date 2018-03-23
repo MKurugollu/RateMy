@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.db.models import Q
 from el_pagination.decorators import page_template
-
+from django.http import HttpResponseRedirect
 
 def landing(request):
     category_list = Category.objects.order_by('-followers')[:5]
