@@ -33,11 +33,11 @@ def contact_us(request):
 
 @page_template('myapp/home.html')
 def home(request, template = 'ratemy/home.html', extra_context=None):
-
     context_dict = {'posts': Post.objects.order_by('-likes'),}
     if extra_context is not None:
         context_dict.update(extra_context)
     return render(request, template, context_dict)
+
 
 
 @login_required
