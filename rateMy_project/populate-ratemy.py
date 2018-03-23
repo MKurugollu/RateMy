@@ -74,7 +74,7 @@ def populate():
          "date": timezone.now}
 
     ]
-    
+
     cats = {"Barber": {"posts": barber_posts, "followers": 450,
                        "image": "category_images/pokemon.PNG",
                        "author": User.objects.get(username='admin')},
@@ -91,7 +91,8 @@ def populate():
                         "image":"category_images/pokemon.PNG",
                         "author": User.objects.get(username='admin')}
             }
-    users= {'Steve':{"first_name": "Hassan",
+
+    steve_info = {"first_name": "Hassan",
                                    "last_name": "Khan",
                                    "age":19,
                                    "country":'Pakistan',
@@ -101,7 +102,12 @@ def populate():
                                    "picture":"category_images/pokemon.PNG",
                                    "bio":"I like pokemon"
 
-    }}
+    }
+
+    users= {'Steve':{
+
+    }
+    }
 
     # if you want to add more catergories or pages, add them to the dictionaries above
 
@@ -128,7 +134,7 @@ def populate():
         u=add_user(user,user_data['first_name'], user_data['last_name'], user_data['age'],user_data['country'],
                    user_data['fb'], user_data['instagram'], user_data['twitter'], user_data['picture'], user_data['bio'])
     for u in UserProfile.objects.all():
-        print("- {0} -".format(str(u)))
+        print("- {0} -{1}".format(str(u), str(p)))
 
 
 
@@ -147,9 +153,10 @@ def add_cat(name, followers,image, author):
     c = Category.objects.get_or_create(name=name)[0]
     c.followers = followers
     c.image = image
-    c.author=author
+    c.author = author
     c.save()
     return c
+
 
 def add_user(user,first_name, last_name, age, country,fb, instagram, twitter, picture,bio):
     u=UserProfile.objects.get_or_create(user=user)[0]
