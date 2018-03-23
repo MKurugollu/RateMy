@@ -16,7 +16,8 @@ urlpatterns = [
         views.show_category, name='show_category'),
     url(r'^profile/(?P<username>[\w\-]+)/$', views.profile, name='profile'),
     url(r'^profiles/$', views.list_profiles, name='list_profiles'),
-    url(r'catagory_list/$', views.catagory_list, name='search'),
+
     url(r'catagory_list/$', views.catagory_list, name='catagory_list'),
+    url(r'^follow_category//$', views.follow_category, name='follow_category'),
 
 ]

@@ -1,15 +1,17 @@
 import os
 from django.utils import timezone
-
+from django_countries.fields import CountryField
+from django_countries import countries
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'rateMy_project.settings')
 
 import django
 django.setup()
 from django.contrib.auth.models import User
 
+
 django.setup()
 
-from ratemy.models import Category, Post
+from ratemy.models import Category, Post, UserProfile
 
 
 def populate():
@@ -30,7 +32,7 @@ def populate():
          "author": User.objects.get(username='admin'),
          "date": timezone.now}
     ]
-    
+
     faceswap_posts = [
         {"title": "Good faceswap",
          "picture": "post_images_pop/faceswap-1.jpg",
@@ -74,7 +76,7 @@ def populate():
          "date": timezone.now}
 
     ]
-    
+
     cats = {"Barber": {"posts": barber_posts, "followers": 450,
                        "image": "category_images/pokemon.PNG",
                        "author": User.objects.get(username='admin')},
@@ -92,6 +94,22 @@ def populate():
                         "author": User.objects.get(username='admin')}
             }
 
+    admin_info = [{"username" : User.objects.get(username = "admin"),
+                    "first_name": "Hassan",
+                   "last_name": "Khan",
+                   "age":30,
+                   "country":"TR",
+                   "fb":"https//www.facebook.com",
+                   "instagram":"www.wtf.com",
+                   "twitter":"",
+                   "picture":"category_images/pokemon.PNG",
+                   "bio":"I like pokemon"}
+    ]
+
+    users= {"user1":{"info": admin_info}
+
+    }
+
     # if you want to add more catergories or pages, add them to the dictionaries above
 
     # The code below goes through the cats dictionary, then adds each category,
@@ -106,8 +124,13 @@ def populate():
     for cat, cat_data in cats.items():
         c = add_cat(cat, cat_data["followers"], cat_data["image"], cat_data["author"])
         for p in cat_data["posts"]:
-            add_post(c, p["title"], p["picture"], p["likes"], p["date"], p["author"])  #
+            add_post(c, p["title"], p["picture"], p["likes"], p["date"], p["author"])
 
+    for user_p, user_data in users.items():
+
+        for i in user_data["info"]:
+            add_user(i["username"], i["first_name"], i["last_name"], i["age"], i["country"], i["fb"], i["instagram"],
+                     i["twitter"], i["picture"], i["bio"])
     # Print out what we have added to the user.
     for c in Category.objects.all():
         for p in Post.objects.filter(category=c):
@@ -115,8 +138,11 @@ def populate():
 
 
 
+    for u in UserProfile.objects.all():
+        print("why is this not working")
 
-def add_post(cat, title, picture, likes, date, author) :# author,
+
+def add_post(cat, title, picture, likes, date, author) :
     p = Post.objects.get_or_create(category=cat, title=title)[0]
     p.picture = picture
     p.likes = likes
@@ -130,10 +156,24 @@ def add_cat(name, followers,image, author):
     c = Category.objects.get_or_create(name=name)[0]
     c.followers = followers
     c.image = image
-    c.author=author
+    c.author = author
     c.save()
     return c
 
+
+def add_user(username, first_name, last_name, age, country, fb, instagram, twitter, picture, bio):
+    u = UserProfile.objects.get_or_create(user=username)[0]
+    u.first_name = first_name
+    u.last_name=last_name
+    u.age = age
+    u.country = country
+    u.fb = fb
+    u.instagram = instagram
+    u.twitter = twitter
+    u.picture = picture
+    u.bio = bio
+    u.save()
+    return u
 
 
 # Start execution here!
