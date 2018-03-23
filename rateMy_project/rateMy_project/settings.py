@@ -46,7 +46,7 @@ SECRET_KEY = '2hg!1en6-2w!^n-p_211=246ggln+8f^#a#t5)x_apa@3cb_5y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://ratemy.pythonanywhere.com/']
 
 
 # Application definition
