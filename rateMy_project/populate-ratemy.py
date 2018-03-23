@@ -1,11 +1,13 @@
 import os
 from django.utils import timezone
-
+from django_countries.fields import CountryField
+from django_countries import countries
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'rateMy_project.settings')
 
 import django
 django.setup()
 from django.contrib.auth.models import User
+
 
 django.setup()
 
@@ -92,22 +94,21 @@ def populate():
                         "author": User.objects.get(username='admin')}
             }
 
-    # steve_info = {"first_name": "Hassan",
-    #                                "last_name": "Khan",
-    #                                "age":19,
-    #                                "country":'Pakistan',
-    #                                "fb":'',
-    #                                "instagram":"",
-    #                                "twitter":"",
-    #                                "picture":"category_images/pokemon.PNG",
-    #                                "bio":"I like pokemon"
-    #
-    # }
-    #
-    # users= {'Steve':{
-    #
-    # }
-    # }
+    admin_info = [{"username" : User.objects.get(username = "admin"),
+                    "first_name": "Hassan",
+                   "last_name": "Khan",
+                   "age":30,
+                   "country":"TR",
+                   "fb":"https//www.facebook.com",
+                   "instagram":"www.wtf.com",
+                   "twitter":"",
+                   "picture":"category_images/pokemon.PNG",
+                   "bio":"I like pokemon"}
+    ]
+
+    users= {"user1":{"info": admin_info}
+
+    }
 
     # if you want to add more catergories or pages, add them to the dictionaries above
 
@@ -123,23 +124,25 @@ def populate():
     for cat, cat_data in cats.items():
         c = add_cat(cat, cat_data["followers"], cat_data["image"], cat_data["author"])
         for p in cat_data["posts"]:
-            add_post(c, p["title"], p["picture"], p["likes"], p["date"], p["author"])  #
+            add_post(c, p["title"], p["picture"], p["likes"], p["date"], p["author"])
 
+    for user_p, user_data in users.items():
+
+        for i in user_data["info"]:
+            add_user(i["username"], i["first_name"], i["last_name"], i["age"], i["country"], i["fb"], i["instagram"],
+                     i["twitter"], i["picture"], i["bio"])
     # Print out what we have added to the user.
     for c in Category.objects.all():
         for p in Post.objects.filter(category=c):
             print("- {0} - {1}".format(str(c), str(p)))
 
-    # for user,user_data in users.items():
-    #     u=add_user(user,user_data['first_name'], user_data['last_name'], user_data['age'],user_data['country'],
-    #                user_data['fb'], user_data['instagram'], user_data['twitter'], user_data['picture'], user_data['bio'])
-    # for u in UserProfile.objects.all():
-    #     print("- {0} -{1}".format(str(u), str(p)))
 
 
+    for u in UserProfile.objects.all():
+        print("why is this not working")
 
 
-def add_post(cat, title, picture, likes, date, author) :# author,
+def add_post(cat, title, picture, likes, date, author) :
     p = Post.objects.get_or_create(category=cat, title=title)[0]
     p.picture = picture
     p.likes = likes
@@ -158,19 +161,19 @@ def add_cat(name, followers,image, author):
     return c
 
 
-# def add_user(user,first_name, last_name, age, country,fb, instagram, twitter, picture,bio):
-#     u=UserProfile.objects.get_or_create(user=user)[0]
-#     u.first_name=first_name
-#     u.last_name=last_name
-#     u.age=age
-#     u.country=country
-#     u.fb=fb
-#     u.instagram=instagram
-#     u.twitter=twitter
-#     u.picture=picture
-#     u.bio=bio
-#     u.save()
-#     return u
+def add_user(username, first_name, last_name, age, country, fb, instagram, twitter, picture, bio):
+    u = UserProfile.objects.get_or_create(user=username)[0]
+    u.first_name = first_name
+    u.last_name=last_name
+    u.age = age
+    u.country = country
+    u.fb = fb
+    u.instagram = instagram
+    u.twitter = twitter
+    u.picture = picture
+    u.bio = bio
+    u.save()
+    return u
 
 
 # Start execution here!

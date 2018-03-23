@@ -45,7 +45,7 @@ class Post(models.Model):
 
 class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User model instance.
-    user = models.OneToOneField(User)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
     # These will be the links to the social media of the User
 
     first_name = models.CharField(max_length=30, blank=False)
