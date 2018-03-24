@@ -28,7 +28,6 @@ img {
 .fade{
     opacity: 1;
 }
-
 {%endblock%}
 
 {% block body_block %}
@@ -36,13 +35,14 @@ img {
     <br>
     <div>
         {% if selecteduser.username == user.username %}
+
             <form method="post" action="." enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <input type="submit" value="Update" />
             </form>
         {% else %}
-            <p>Name: {{userprofile.first_name}} {{userprofile.last_name}}</p>
+            <p class="pstyle">Name: {{userprofile.first_name}} {{userprofile.last_name}}</p>
             <p>age: {{userprofile.age}}</p>
             <p>From: {{userprofile.country.name}}</p>
             <p>Bio: {{userprofile.bio}}</p>

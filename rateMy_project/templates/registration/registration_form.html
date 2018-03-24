@@ -48,12 +48,14 @@
 
 {% block body_block %}
 
-
+{% if user.is_authenticated %}
+    <h1 style="color:PowderBlue">You are already logged in</h1>
+{% else %}
 <form class="form_style" style="border-radius: 25px;margin:auto;background-color:powderblue;width:500px;color:white;" role="form" method="post" action=".">
     <h2 class="form-signin-heading">Sign Up Here</h2>
     <br>
     {% csrf_token %}
-    <div class="form-group align" >
+    <div class="form-group align">
     <p class="required"><label class="required bold" for="id_username">
         Username:</label>
         <input class="form-control width" id="id_username" maxlength="30"
@@ -81,7 +83,11 @@
             Enter the same password as before, for verification.
         </span>
     </p>
+    {{form.password2.errors}}
+    {{form.}}
     </div>
+
     <button style="position: relative; top: -5px;" type="submit" class="btn btn-primary">Submit</button>
+{% endif %}
 </form>
 {% endblock %}

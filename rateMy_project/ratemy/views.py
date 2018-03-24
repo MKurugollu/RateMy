@@ -96,8 +96,6 @@ def show_category(request, category_name_slug):
         context_dict['posts'] = None
         context_dict['category'] = None
 
-
-
     return render(request, 'ratemy/category.html', context_dict)
 
 
@@ -128,12 +126,13 @@ def register_profile(request):
 
     return render(request, 'ratemy/profile_registration.html', context_dict)
 
+
 def profile(request, username):
     try:
         user = User.objects.get(username=username)
     except User.DoesNotExist:
         return HttpResponseRedirect(reverse('home'))
-    userprofile = UserProfile.objects.get_or_create(user=user)[0]
+    userprofile = UserProfile.objects.filter(user=user)[0]
     form =UserProfileForm(
         {'picture': userprofile.picture, 'bio':userprofile.bio, 'age':userprofile.age, 'country':userprofile.country,
          'first_name':userprofile.first_name, 'last_name':userprofile.last_name, 'fb':userprofile.fb,
