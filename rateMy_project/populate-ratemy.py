@@ -78,7 +78,7 @@ def populate():
     ]
 
     cats = {"Barber": {"posts": barber_posts, "followers": 450,
-                       "image": "category_images/pokemon.PNG",
+                       "image": "category_images/Barber_sign.jpg",
                        "author": User.objects.get(username='admin')},
 
             "Face Swap": {"posts": faceswap_posts, "followers": 300,
@@ -94,12 +94,12 @@ def populate():
                         "author": User.objects.get(username='admin')}
             }
 
-    admin_info = [{"username" : User.objects.get(username = "admin"),
+    admin_info = [{"username": User.objects.get(username = "admin"),
                     "first_name": "Hassan",
                    "last_name": "Khan",
                    "age":30,
                    "country":"TR",
-                   "fb":"https//www.facebook.com",
+                   "fb": "https//www.facebook.com",
                    "instagram":"www.wtf.com",
                    "twitter":"",
                    "picture":"category_images/pokemon.PNG",
@@ -139,7 +139,7 @@ def populate():
 
 
     for u in UserProfile.objects.all():
-        print("why is this not working")
+         print("- {0} -".format(str(u)))
 
 
 def add_post(cat, title, picture, likes, date, author) :

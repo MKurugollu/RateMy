@@ -160,7 +160,7 @@ def list_profiles(request):
         userprofile_list= Category.objects.filter(Q(author__username__icontains=query))
 
 
-    context_dict = {'categories': userprofile_list}
+    context_dict = {'userprofile_list': userprofile_list}
 
 
     return render(request, 'ratemy/list_profiles.html', context=context_dict)

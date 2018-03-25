@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% load el_pagination_tags %}
 {% include page_template %}
+
 {% block title_block %}
 Home
 {% endblock %}
@@ -39,7 +40,8 @@ img {
         {% paginate posts %}
         {% for post in posts %}
         <div>
-        <a href="/ratemy/category/{{post.category.slug}}/{{post.slug}}"><div class="outline"  style="width:100%;margin: 0 auto;padding: 10px;height:150px;margin: 20px 0;background-color:#F8F8F8"></a>
+        <a href="/ratemy/category/{{post.category.slug}}/{{post.slug}}">
+            <div class="outline"  style="width:100%;margin: 0 auto;padding: 10px;height:150px;margin: 20px 0;background-color:#F8F8F8"></a>
             <a href = "/ratemy/category/{{post.category.slug}}/{{post.slug}}">{{ post.title }}</a>
             <img src="{{post.picture.url}}">
             <p>{{post.author}}</p>

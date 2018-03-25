@@ -18,19 +18,15 @@
     <title>{% block title_block %}{%endblock%}</title>
     <!-- Custom styles for this template -->
     <style>
-
     {%block style_block%}{%endblock%}
-
         .navbar {
             background-color: #b0e0e6 !important;
             transition: all 0.5s;
             box-shadow: 5px 5px 5px grey;
         }
-
         .navbar .navbar-brand {
             color: #ffffff;
            }
-
         .navbar .navbar-brand:hover,
         .navbar .navbar-brand:focus {
         color: #ffa500;
@@ -100,7 +96,6 @@
     .navbar .navbar-link:hover {
       color: #ffa500;
     }
-
     @media (max-width: 575px) {
       .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item {
         color: #ffffff;
@@ -114,7 +109,6 @@
         background-color: #b0e0e6;
       }
     }
-
     @media (max-width: 767px) {
       .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item {
         color: #ffffff;
@@ -128,7 +122,6 @@
         background-color: #b0e0e6;
       }
     }
-
     @media (max-width: 991px) {
       .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item {
         color: #ffffff;
@@ -142,7 +135,6 @@
         background-color: #b0e0e6;
       }
     }
-
     @media (max-width: 1199px) {
       .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item {
         color: #ffffff;
@@ -156,7 +148,6 @@
         background-color: #b0e0e6;
       }
     }
-
     .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item {
       color: #ffffff;
     }
@@ -168,12 +159,10 @@
       color: #ffa500;
       background-color: #b0e0e6;
     }
-
     /*For hover search button*/
     .search-container button:hover {
       background: Orange; !important;
     }
-
     @media screen and (max-width: 600px) {
       .search-container {
         float: none;
@@ -186,16 +175,12 @@
         margin: 0;
         padding: 14px;
       }
-
      .mr-auto {
     margin-right: 0 !important;
 }
     </style>
-
 </head>
-
 <body>
-
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -204,14 +189,12 @@
   js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-
 <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse" id="navbar2">
     <button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse"
             data-target="#navbar" aria-controls="navbar" aria-expanded="true" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <a  href="/" ><img src='{% static "website-images/ratemylogoclear.png" %}' alt="ratemy logo" width="70px"/></a>
-
     <div class="collapse navbar-collapse" id="navbar">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
@@ -242,7 +225,6 @@
                     <a class="dropdown-item" href="{% url 'auth_logout' %}?next=/home">Log Out</a>
                 </div>
             </li>
-
             {% else %}
             <li style="position: absolute;right: 150px" class="nav-it1em">
                 <a class="nav-link" href="{% url 'registration_register' %}">Sign Up</a>
@@ -252,15 +234,11 @@
             </li>
             {% endif %}
         </ul>
-
     </div>
-
 </nav>
 <div style="padding:100px;text-align:center">
     {% block body_block %}{% endblock %}
 </div>
-
-
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
@@ -285,7 +263,6 @@
     {#%block script_block%}
     {#%endblock%}
 </script>
-
 <script>
 var prevScrollpos = window.pageYOffset;
 window.onscroll = function() {
@@ -303,18 +280,9 @@ var currentScrollPos = window.pageYOffset;
   }
   prevScrollpos = currentScrollPos;
 }
-
 </script>
-
-
-
-
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="http://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js">
-
-
 </body>
 </html>
-
-

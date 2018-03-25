@@ -1,8 +1,12 @@
 {% extends 'ratemy/base_bootstrap.html' %}
 {% load staticfiles %}
+
 {% block title_block %}
 Catagories
 {% endblock %}
+
+
+
 
 
 {% block body_block %}
@@ -14,13 +18,26 @@ Catagories
         </div>
 
 {% if categories %}
+    <div>
+
+
       <ul>
           {% for category in categories %}
-          <li><a href="/category/{{category.slug}}">{{ category.name }}</a></li>
+          <div>
+              <a href="/category/{{category.slug}}"><div class="outline"  style="width:100%;margin: 0 auto;padding:: 10px;height:150px;margin: 20px 0;background-color:#F8F8F8"></a>
+              <a href="/category/{{category.slug}}">{{ category.name }}</a>
+              <img height="150" width="300px" src="{{MEDIA_URL}}{{category.image}}">
+              <p>{{ category.author }}</p>
+
+
+          </div>
+
           {% endfor %}
+
       </ul>
       {% else %}
         <strong>There are no categories present.</strong>
       {% endif %}
 
 {% endblock %}
+

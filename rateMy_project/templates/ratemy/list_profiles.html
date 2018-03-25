@@ -24,8 +24,7 @@
                 {% for listuser in userprofile_list %}
                 <div class="list-group-item">
                     <h4 class="list-group-item-heading">
-                        <a href="{% url 'profile' listuser.user.username %}">
-                        {{ listuser.username }}</a>
+                        <a href="{% url 'profile' listuser.user.username %}">{{ listuser.username }}</a>
                     </h4>
                 </div>
                 {% endfor %}
