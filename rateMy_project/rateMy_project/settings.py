@@ -60,7 +60,8 @@ INSTALLED_APPS = [
     'ratemy',
     'registration',
     'django_countries',
-    'el_pagination'
+    'el_pagination',
+    'sorting_bootstrap'
 ]
 
 MIDDLEWARE_CLASSES = [

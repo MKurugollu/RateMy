@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% load el_pagination_tags %}
 {% include page_template %}
+{% load sorting_tags %}
 
 {% block title_block %}
 Home
@@ -34,11 +35,13 @@ img {
 
 {% block body_block %}
     <h1></h1>
-
+{% sort_link "link text" "name" %}
 {% if posts %}
     <div >
         {% paginate posts %}
+
         {% for post in posts %}
+
         <div>
         <a href="/ratemy/category/{{post.category.slug}}/{{post.slug}}">
             <div class="outline"  style="width:100%;margin: 0 auto;padding: 10px;height:150px;margin: 20px 0;background-color:#F8F8F8"></a>

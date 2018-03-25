@@ -77,19 +77,19 @@ def populate():
 
     ]
 
-    cats = {"Barber": {"posts": barber_posts, "followers": 450,
+    cats = {"Barber": {"posts": barber_posts, "likes": 450,
                        "image": "category_images/Barber_sign.jpg",
                        "author": User.objects.get(username='admin')},
 
-            "Face Swap": {"posts": faceswap_posts, "followers": 300,
+            "Face Swap": {"posts": faceswap_posts, "likes": 300,
                           "image": "category_images/pokemon.PNG",
                           "author": User.objects.get(username='admin')},
 
-            "Pokemon": {"posts": pokemon_posts, "followers":1000000,
+            "Pokemon": {"posts": pokemon_posts, "likes":1000000,
                         "image":"category_images/pokemon.PNG",
                         "author": User.objects.get(username='admin')},
 
-            "Why tho": {"posts": why_tho_posts, "followers":1,
+            "Why tho": {"posts": why_tho_posts, "likes":1,
                         "image":"category_images/pokemon.PNG",
                         "author": User.objects.get(username='admin')}
             }
@@ -122,7 +122,7 @@ def populate():
 
 
     for cat, cat_data in cats.items():
-        c = add_cat(cat, cat_data["followers"], cat_data["image"], cat_data["author"])
+        c = add_cat(cat, cat_data["likes"], cat_data["image"], cat_data["author"])
         for p in cat_data["posts"]:
             add_post(c, p["title"], p["picture"], p["likes"], p["date"], p["author"])
 
@@ -132,6 +132,7 @@ def populate():
             add_user(i["username"], i["first_name"], i["last_name"], i["age"], i["country"], i["fb"], i["instagram"],
                      i["twitter"], i["picture"], i["bio"])
     # Print out what we have added to the user.
+
     for c in Category.objects.all():
         for p in Post.objects.filter(category=c):
             print("- {0} - {1}".format(str(c), str(p)))
@@ -152,9 +153,9 @@ def add_post(cat, title, picture, likes, date, author) :
     return p
 
 
-def add_cat(name, followers,image, author):
+def add_cat(name, likes,image, author):
     c = Category.objects.get_or_create(name=name)[0]
-    c.followers = followers
+    c.likes = likes
     c.image = image
     c.author = author
     c.save()

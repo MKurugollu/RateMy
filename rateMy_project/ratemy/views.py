@@ -184,16 +184,5 @@ def catagory_list(request):
 
     return render(request, 'ratemy/catagory_list.html', context=context_dict)
 
-@login_required
-def follow_category(request):
-    cat_id = None
-    if request.method == 'GET':
-        cat_id = request.GET['category_id']
-    followers = 0
-    if cat_id:
-        cat = Category.objects.get(id=(cat_id))
-        if cat:
-            followers= cat.likes + 1
-            cat.followers = followers
-            cat.save()
-    return HttpResponse(followers)
+
+
