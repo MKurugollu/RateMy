@@ -153,9 +153,20 @@ def profile(request, username):
 
 @login_required
 def list_profiles(request):
-#    user_list = User.objects.all()
-    userprofile_list = UserProfile.objects.all()
-    return render(request, 'ratemy/list_profiles.html', { 'userprofile_list' : userprofile_list})
+
+    userprofile_list=UserProfile.objects.all()
+    query=request.GET.get('search')
+    if query:
+
+        userprofile_list= UserProfile.objects.filter( Q(user__username__icontains=query) )
+
+
+    context_dict = {'userprofile_list': userprofile_list}
+
+
+
+
+    return render(request, 'ratemy/list_profiles.html', context_dict)
 
 
 
