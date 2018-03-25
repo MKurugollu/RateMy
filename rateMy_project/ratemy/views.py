@@ -151,19 +151,12 @@ def profile(request, username):
     return render(request, 'ratemy/profile.html', {'userprofile': userprofile, 'selecteduser': user, 'form': form, 'posts': posts})
 
 
+@login_required
 def list_profiles(request):
+#    user_list = User.objects.all()
     userprofile_list = UserProfile.objects.all()
+    return render(request, 'ratemy/list_profiles.html', { 'userprofile_list' : userprofile_list})
 
-    query=request.GET.get('search')
-    if query:
-
-        userprofile_list= Category.objects.filter(Q(author__username__icontains=query))
-
-
-    context_dict = {'userprofile_list': userprofile_list}
-
-
-    return render(request, 'ratemy/list_profiles.html', context=context_dict)
 
 
 def catagory_list(request):

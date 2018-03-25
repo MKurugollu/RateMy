@@ -1,38 +1,40 @@
 {% extends 'ratemy/base_bootstrap.html' %}
 
+
 {% load staticfiles %}
 
-{% block block_title %}
-    User Profiles
-{% endblock %}
+{% block title %}User Profiles{% endblock %}
 
 {% block body_block %}
-    <h1>User Profiles</h1>
+<h1>User Profiles</h1>
 
-        <div class="search-container">
-            <form  method="GET" action="">
-                <input  type="text" placeholder="Search.." name="search" value="{{ request.GET.search }}">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
-    <div class="panel">
-    {% if userprofile_list %}
-    <div class="panel-heading">
-        <!-- Display search results in an ordered list -->
-        <div class="panel-body">
-            <div class="list-group">
-                {% for listuser in userprofile_list %}
-                <div class="list-group-item">
-                    <h4 class="list-group-item-heading">
-                        <a href="{% url 'profile' listuser.user.username %}">{{ listuser.username }}</a>
-                    </h4>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    {% else %}
-        <p>There are no users for the site.</p>
-    {% endif %}
-    </div>
+<div class="panel">
+	{% if userprofile_list %}
+	<div class="panel-heading">
+		<!-- Display search results in an ordered list -->
+		<div class="panel-body">
+			<div class="list-group">
+				{% for listuser in userprofile_list %}
+				<div class="list-group-item">
+					{% if listuser.picture %}
+					<img width="100" height="100" src="{{ MEDIA_URL}}{{listuser.picture}}"/>
+					{% else %}
+					<img width="100" height="100" src="category_images/pokemon.PNG"/>
+					{% endif %}
+
+					<h4 class="list-group-item-heading">
+						<a href="{% url 'profile' listuser.user.username %}">{{ listuser.user.username }}</a>
+					</h4>
+
+
+
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	{% else %}
+		<p>There are no users for the site.</p>
+	{% endif %}
+</div>
 {% endblock %}
