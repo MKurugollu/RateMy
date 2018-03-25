@@ -25,6 +25,7 @@ img {
     margin: left;
     border-radius: 10%;
     text-align:right;
+    float:left;
 
 }
 
@@ -119,11 +120,11 @@ p {
             <ul>
             {% paginate posts %}
             {%for post in posts %}
-                <div style="text-align:center;background-color:red;">
+                <div style="text-align:center;">
                     <a href="/ratemy/category/{{post.category.slug}}/{{post.slug}}">
                     <div class="outline"  style="width:100%;margin: 0 auto;padding: 10px;height:150px;margin: 20px 0;background-color:#F8F8F8"></a>
                     <a href = "/ratemy/category/{{post.category.slug}}/{{post.slug}}">{{ post.title }}</a>
-                    <div style="height:100%;width:auto" id="leftcolumn"><img class="div-img" src="{{post.picture.url}}"></div>
+                    <img class="div-img" src="{{post.picture.url}}">
                     <div id="rightcolumn" >
                         <p>{{post.author}}</p>
                         <p>{{post.created_date}}</p>
