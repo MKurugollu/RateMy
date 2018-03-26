@@ -9,11 +9,11 @@ from django_countries.fields import CountryField
 
 class Category(models.Model):
     name = models.CharField(max_length=18, unique=True) # name of the category
-    likes = models.IntegerField(default=0) # num of authorised users following/liking(?) the category
+
     image = models.ImageField(upload_to='category_images') # image upload
     author = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
     slug = models.SlugField(unique=True)
-    followers = models.IntegerField(default=0)
+    followers = models.IntegerField(default=0)# num of authorised users following/liking(?) the category
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)

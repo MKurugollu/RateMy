@@ -78,9 +78,10 @@ def populate():
 
     ]
 
-    cats = {"Barber": {"posts": barber_posts, "likes": 450,
+    cats = {"Barber": {"posts": barber_posts, "followers": 450,
                        "image": "category_images/Barber_sign.jpg",
                        "author": User.objects.get(username='admin')},
+
             "Face Swap": {"posts": faceswap_posts, "followers": 300,
                           "image": "category_images/pokemon.png",
                           "author": User.objects.get(username='admin')},
@@ -89,7 +90,7 @@ def populate():
                         "image":"category_images/pokemon.png",
                         "author": User.objects.get(username='admin')},
 
-            "Why tho": {"posts": why_tho_posts, "likes":1,
+            "Why tho": {"posts": why_tho_posts, "followers":1,
                         "image":"category_images/pokemon.PNG",
                         "author": User.objects.get(username='admin')}
             }
@@ -122,7 +123,7 @@ def populate():
 
 
     for cat, cat_data in cats.items():
-        c = add_cat(cat, cat_data["likes"], cat_data["image"], cat_data["author"])
+        c = add_cat(cat, cat_data["followers"], cat_data["image"], cat_data["author"])
         for p in cat_data["posts"]:
             add_post(c, p["title"], p["picture"], p["likes"], p["date"], p["author"])
 
@@ -153,9 +154,9 @@ def add_post(cat, title, picture, likes, date, author) :
     return p
 
 
-def add_cat(name, likes,image, author):
+def add_cat(name, followers,image, author):
     c = Category.objects.get_or_create(name=name)[0]
-    c.likes = likes
+    c.followers = followers
     c.image = image
     c.author = author
     c.save()

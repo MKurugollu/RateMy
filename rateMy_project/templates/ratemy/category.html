@@ -19,13 +19,12 @@
         <div class="image-cropper"><img class="cat-img" src="{{MEDIA_URL}}{{category.image}}"></div>
 
         <p>Creator: <a href="{% url 'profile' category.author %}">{{category.author}}</a></p>
-
         <div>
 
-
-	<strong id="like_count">{{ category.likes}}</strong> people like this category
+    <div>
+	<strong id="follow_count">{{ category.followers}}</strong> people like this category
 	{% if user.is_authenticated %}
-		<button id="likes" data-catid="{{category.id}}" class="btn btn-primary btn-sm" type="button">
+		<button id="followers" data-catid="{{category.id}}" class="btn btn-primary btn-sm" type="button">
 			Like
 		</button>
 	{% endif %}
@@ -67,6 +66,7 @@
             {%endfor%}
             {% show_pages %}
             </ul>
+        </div>
         {%else%}
             <strong>No pages currently in category.</strong>
         {%endif%}

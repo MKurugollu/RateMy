@@ -5,18 +5,18 @@ from ratemy.models import Category, Post, UserProfile
 from django.contrib.auth.decorators import login_required
 
 @login_required
-def like_category(request):
+def follow_category(request):
     cat_id = None
     if request.method == 'GET':
         cat_id = request.GET['category_id']
-    likes = Category.likes
+    followers = 0
     if cat_id:
         cat = Category.objects.get(id=int(cat_id))
         if cat:
-            likes = cat.likes + 1
-            cat.likes = likes
+            followers = cat.followers + 1
+            cat.followers = followers
             cat.save()
-    return HttpResponse(likes)
+    return HttpResponse(followers)
 
 
 
