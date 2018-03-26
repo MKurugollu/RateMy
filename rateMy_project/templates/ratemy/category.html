@@ -21,12 +21,12 @@
         <p>Creator: <a href="{% url 'profile' category.author %}">{{category.author}}</a></p>
 
 
-    <div>
-	<strong id="follow_count">{{ category.followers}}</strong> people like this category
+
+	<strong id="follower_count">{{ category.followers}}</strong> people follow this category
 	{% if user.is_authenticated %}
 		<button id="followers" data-catid="{{category.id}}" class="btn btn-primary btn-sm" type="button">Follow</button>
 	{% endif %}
-	</div>
+
 
 
 
