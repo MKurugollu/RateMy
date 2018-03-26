@@ -1,0 +1,30 @@
+/* CSS Document */
+
+div{
+  background-color: powderblue;
+  margin: 10px 0px auto;
+  padding: 0px;
+  width: 100%;
+}
+
+li{
+  width: 90%;
+  display: block;
+  font-size: 14px;
+  font-family: Tahoma;
+  padding: 10px;
+  margin: 10px auto;
+  color: #0E3C29;
+}
+
+li.q{
+  font-size: 1.3em;
+  cursor: pointer;
+  background-color: #ccc;
+}
+
+
+li.a{
+  margin-left: 10px;
+  font-size: 1em;
+}
