@@ -45,7 +45,6 @@
             <ul>
             {% paginate posts %}
             {%for post in posts %}
-                <div>
                     <div class="outline post-div" id="yourdiv">
 
                     <div class="div-post-img"><a href = "/ratemy/category/{{post.category.slug}}/{{post.slug}}"><img class="post-img" src="{{post.picture.url}}"></a></div>

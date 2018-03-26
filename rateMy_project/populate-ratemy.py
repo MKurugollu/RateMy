@@ -82,15 +82,15 @@ def populate():
                        "author": User.objects.get(username='admin')},
 
             "Face Swap": {"posts": faceswap_posts, "followers": 300,
-                          "image": "category_images/pokemon.PNG",
+                          "image": "category_images/pokemon.png",
                           "author": User.objects.get(username='admin')},
 
             "Pokemon": {"posts": pokemon_posts, "followers":1000000,
-                        "image":"category_images/pokemon.PNG",
+                        "image":"category_images/pokemon.png",
                         "author": User.objects.get(username='admin')},
 
             "Why tho": {"posts": why_tho_posts, "followers":1,
-                        "image":"category_images/pokemon.PNG",
+                        "image":"category_images/pokemon.png",
                         "author": User.objects.get(username='admin')}
             }
 

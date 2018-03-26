@@ -12,176 +12,20 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="{% static 'website-images/favicon.ico' %}">
+
     <!-- Bootstrap core CSS -->
     <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>{% block title_block %}{%endblock%}</title>
     <link rel="stylesheet" href="{%block head_block%}{%endblock%}" />
     <!-- Custom styles for this template -->
-    <style>
-    {%block style_block%}{%endblock%}
-        .navbar {
-            background-color: #b0e0e6 !important;
-            transition: all 0.5s;
-            box-shadow: 5px 5px 5px grey;
-        }
-        .navbar .navbar-brand {
-            color: #ffffff;
-           }
-        .navbar .navbar-brand:hover,
-        .navbar .navbar-brand:focus {
-        color: #ffa500;
-        }
-        .navbar .navbar-text {
-        color: #ffffff;
-        }
-        .navbar .navbar-text a {
-            color: #ffa500;
-    }
-    .navbar .navbar-text a:hover,
-    .navbar .navbar-text a:focus {
-      color: #ffa500;
-    }
-    .navbar .navbar-nav .nav-link {
-      color: #ffffff;
-      border-radius: .25rem;
-      margin: 0 0.25em;
-    }
-    .navbar .navbar-nav .nav-link:not(.disabled):hover,
-    .navbar .navbar-nav .nav-link:not(.disabled):focus {
-      color: #ffa500;
-    }
-    .navbar .navbar-nav .dropdown-menu {
-      background-color: #b0e0e6;
-      border-color: #b0e0e6;
-      transition: all 0.3s;
-    }
-    .navbar .navbar-nav .dropdown-menu .dropdown-item {
-      color: #ffffff;
-    }
-    .navbar .navbar-nav .dropdown-menu .dropdown-item:hover,
-    .navbar .navbar-nav .dropdown-menu .dropdown-item:focus,
-    .navbar .navbar-nav .dropdown-menu .dropdown-item.active {
-      color: #ffa500;
-      background-color: #b0e0e6;
-    }
-    .navbar .navbar-nav .dropdown-menu .dropdown-divider {
-      border-top-color: #b0e0e6;
-    }
-    .navbar .navbar-nav .nav-item.active .nav-link,
-    .navbar .navbar-nav .nav-item.active .nav-link:hover,
-    .navbar .navbar-nav .nav-item.active .nav-link:focus,
-    .navbar .navbar-nav .nav-item.show .nav-link,
-    .navbar .navbar-nav .nav-item.show .nav-link:hover,
-    .navbar .navbar-nav .nav-item.show .nav-link:focus {
-      color: #ffa500;
-      background-color: #b0e0e6;
-    }
-    .navbar .navbar-toggle {
-      border-color: #b0e0e6;
-    }
-    .navbar .navbar-toggle:hover,
-    .navbar .navbar-toggle:focus {
-      background-color: #b0e0e6;
-    }
-    .navbar .navbar-toggle .navbar-toggler-icon {
-      color: #ffffff;
-    }
-    .navbar .navbar-collapse,
-    .navbar .navbar-form {
-      border-color: #ffffff;
-    }
-    .navbar .navbar-link {
-      color: #ffffff;
-    }
-    .navbar .navbar-link:hover {
-      color: #ffa500;
-    }
-    @media (max-width: 575px) {
-      .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item {
-        color: #ffffff;
-      }
-      .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:hover,
-      .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:focus {
-        color: #ffa500;
-      }
-      .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item.active {
-        color: #ffa500;
-        background-color: #b0e0e6;
-      }
-    }
-    @media (max-width: 767px) {
-      .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item {
-        color: #ffffff;
-      }
-      .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:hover,
-      .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:focus {
-        color: #ffa500;
-      }
-      .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item.active {
-        color: #ffa500;
-        background-color: #b0e0e6;
-      }
-    }
-    @media (max-width: 991px) {
-      .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item {
-        color: #ffffff;
-      }
-      .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:hover,
-      .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:focus {
-        color: #ffa500;
-      }
-      .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item.active {
-        color: #ffa500;
-        background-color: #b0e0e6;
-      }
-    }
-    @media (max-width: 1199px) {
-      .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item {
-        color: #ffffff;
-      }
-      .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:hover,
-      .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:focus {
-        color: #ffa500;
-      }
-      .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item.active {
-        color: #ffa500;
-        background-color: #b0e0e6;
-      }
-    }
-    .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item {
-      color: #ffffff;
-    }
-    .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:hover,
-    .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:focus {
-      color: #ffa500;
-    }
-    .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item.active {
-      color: #ffa500;
-      background-color: #b0e0e6;
-    }
-    /*For hover search button*/
-    .search-container button:hover {
-      background: Orange; !important;
-    }
-    @media screen and (max-width: 600px) {
-      .search-container {
-        float: none;
-      }
-      .search-container button {
-        float: none;
-        display: block;
-        text-align: left;
-        width: 100%;
-        margin: 0;
-        padding: 14px;
-      }
-     .mr-auto {
-    margin-right: 0 !important;
-}
-    </style>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+
+
 </head>
 <body>
+
+
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -246,9 +90,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"
         integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY"
         crossorigin="anonymous"></script>
-<!--
-   <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
--->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"
         integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB"
         crossorigin="anonymous"></script>
@@ -256,34 +98,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="{% static 'js/jquery.js' %}"></script>
 <script src="{% static 'js/ratemy-ajax.js' %}"></script>
-<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-<!--
-<script src="http://v4-alpha.getbootstrap.com/assets/js/vendor/holder.min.js"></script>
--->
-<script>
-    {#%block script_block%}
-    {#%endblock%}
-</script>
-<script>
-var prevScrollpos = window.pageYOffset;
-window.onscroll = function() {
-var currentScrollPos = window.pageYOffset;
-  if (prevScrollpos > currentScrollPos) {
-    document.getElementById("navbar2").style.top = "0";
-    {% if user.is_authenticated %}
-    document.getElementById("drop").style.top = "45px";
-    {% endif %}
-  } else {
-    document.getElementById("navbar2").style.top = "-70px";
-    {% if user.is_authenticated %}
-    document.getElementById("drop").style.top = "-110px";
-    {% endif %}
-  }
-  prevScrollpos = currentScrollPos;
-}
-</script>
+<script src="{% static 'js/Hide-Nav-Scroll.js' %}" type="text/javascript"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="http://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+
 </body>
 </html>
