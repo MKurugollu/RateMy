@@ -19,20 +19,18 @@
         <div class="image-cropper"><img class="cat-img" src="{{MEDIA_URL}}{{category.image}}"></div>
 
         <p>Creator: <a href="{% url 'profile' category.author %}">{{category.author}}</a></p>
-        <div>
+
 
     <div>
 	<strong id="follow_count">{{ category.followers}}</strong> people like this category
 	{% if user.is_authenticated %}
-		<button id="followers" data-catid="{{category.id}}" class="btn btn-primary btn-sm" type="button">
-			Like
-		</button>
+		<button id="followers" data-catid="{{category.id}}" class="btn btn-primary btn-sm" type="button">Follow</button>
 	{% endif %}
 	</div>
 
 
 
-        <hr>
+
         <div>
             <h1>Posts</h1>
         </div>
@@ -52,20 +50,22 @@
             {%for post in posts %}
                     <div class="outline post-div" id="yourdiv">
 
-                    <div class="div-post-img"><a href = "/ratemy/category/{{post.category.slug}}/{{post.slug}}"><img class="post-img" src="{{post.picture.url}}"></a></div>
-                    <div id="rightcolumn" >
-                        <h6><a href = "/ratemy/category/{{post.category.slug}}/{{post.slug}}">{{ post.title }}</a></h6>
-                        <p style="font-size:15px">OP: <a href="{% url 'profile' post.author %}">{{post.author}}</a></p>
-                        <p>Likes: {{post.likes}}</p>
-                        <div style="float: right;">
-                            <p style="font-size:10px">{{post.created_date}}</p>
+                        <div class="div-post-img"><a href = "/ratemy/category/{{post.category.slug}}/{{post.slug}}"><img class="post-img" src="{{post.picture.url}}"></a></div>
+                        <div id="rightcolumn" >
+                            <h6><a href = "/ratemy/category/{{post.category.slug}}/{{post.slug}}">{{ post.title }}</a></h6>
+                            <p style="font-size:15px">OP: <a href="{% url 'profile' post.author %}">{{post.author}}</a></p>
+                            <p>Likes: {{post.likes}}</p>
+                            <div style="float: right;">
+                                <p style="font-size:10px">{{post.created_date}}</p>
+                            </div>
                         </div>
                     </div>
                     <br style="clear: left;" />
-                </div>
+            </ul>
+
             {%endfor%}
             {% show_pages %}
-            </ul>
+
         </div>
         {%else%}
             <strong>No pages currently in category.</strong>
@@ -73,5 +73,5 @@
     {%else%}
         The specified category does not exist!
     {% endif %}
-    </div>
+
 {% endblock %}
