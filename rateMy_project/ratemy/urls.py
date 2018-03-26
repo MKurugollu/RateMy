@@ -20,5 +20,6 @@ urlpatterns = [
     url(r'catagory_list/$', views.catagory_list, name='catagory_list'),
 
     url(r'follow_category/$', views_ajax.follow_category, name='follow_category'),
+    url(r'like_post/$', views_ajax.like_post, name='like_post'),
 
 ]

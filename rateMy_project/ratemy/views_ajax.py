@@ -18,6 +18,18 @@ def follow_category(request):
             cat.save()
     return HttpResponse(followers)
 
-
+@login_required
+def like_post(request):
+    post_id = None
+    if request.method == 'GET':
+        post_id = request.GET['post_id']
+    likes = 0
+    if post_id:
+        post = Post.objects.get(id=int(post_id))
+        if post:
+            likes = post.likes + 1
+            post.likes = likes
+            post.save()
+    return HttpResponse(likes)
 
 

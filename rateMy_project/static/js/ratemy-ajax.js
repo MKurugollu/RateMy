@@ -7,4 +7,13 @@ $(document).ready(function() {
 			$('#follower_count').html(data);
 			$('#followers').hide();
 		})
+	})
+
+	$('#likes').click(function(){
+		var postid;
+		postid = $(this).attr("data-postid");
+		$.get('/ratemy/like_post/', {post_id: postid}, function(data){
+			$('#like_count').html(data);
+			$('#likes').hide();
+		})
 	})})
