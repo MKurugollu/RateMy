@@ -15,6 +15,7 @@ from ratemy.models import Category, Post, UserProfile
 
 
 def populate():
+
     barber_posts = [
         {"title": "Bad Barber",
          "picture": "post_images_pop/barber-2.jpeg",
@@ -80,13 +81,12 @@ def populate():
     cats = {"Barber": {"posts": barber_posts, "likes": 450,
                        "image": "category_images/Barber_sign.jpg",
                        "author": User.objects.get(username='admin')},
-
-            "Face Swap": {"posts": faceswap_posts, "likes": 300,
-                          "image": "category_images/pokemon.PNG",
+            "Face Swap": {"posts": faceswap_posts, "followers": 300,
+                          "image": "category_images/pokemon.png",
                           "author": User.objects.get(username='admin')},
 
-            "Pokemon": {"posts": pokemon_posts, "likes":1000000,
-                        "image":"category_images/pokemon.PNG",
+            "Pokemon": {"posts": pokemon_posts, "followers":1000000,
+                        "image":"category_images/pokemon.png",
                         "author": User.objects.get(username='admin')},
 
             "Why tho": {"posts": why_tho_posts, "likes":1,
@@ -100,7 +100,7 @@ def populate():
                    "age":30,
                    "country":"TR",
                    "fb": "https//www.facebook.com",
-                   "instagram":"www.wtf.com",
+                   "instagram":"",
                    "twitter":"",
                    "picture":"category_images/pokemon.PNG",
                    "bio":"I like pokemon"}
