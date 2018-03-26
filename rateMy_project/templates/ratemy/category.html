@@ -21,13 +21,18 @@
         <p>Creator: <a href="{% url 'profile' category.author %}">{{category.author}}</a></p>
 
         <div>
-            <strong id="like_count">{{ category.followers}}</strong> people follow this category
-            {% if user.is_authenticated %}
-                <button id="likes" data-catid="{{category.id}}" class="btn btn-primary btn-sm" type="button">
-                    Follow
-                </button>
-            {% endif %}
-        </div>
+
+
+	<strong id="like_count">{{ category.likes}}</strong> people like this category
+	{% if user.is_authenticated %}
+		<button id="likes" data-catid="{{category.id}}" class="btn btn-primary btn-sm" type="button">
+			Like
+		</button>
+	{% endif %}
+	</div>
+
+
+
         <hr>
         <div>
             <h1>Posts</h1>
@@ -41,6 +46,7 @@
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
         </div>
+
         {% if posts %}
             <ul>
             {% paginate posts %}

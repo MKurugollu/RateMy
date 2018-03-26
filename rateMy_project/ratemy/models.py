@@ -4,14 +4,16 @@ from django.template.defaultfilters import slugify #  Used to slugify the urls
 from django.conf import settings
 from django.contrib.auth.models import User
 from django_countries.fields import CountryField
+
 # Create your models here.
 
 class Category(models.Model):
     name = models.CharField(max_length=18, unique=True) # name of the category
-    followers = models.IntegerField(default=0) # num of authorised users following/liking(?) the category
+    likes = models.IntegerField(default=0) # num of authorised users following/liking(?) the category
     image = models.ImageField(upload_to='category_images') # image upload
     author = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
     slug = models.SlugField(unique=True)
+    followers = models.IntegerField(default=0)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -28,7 +30,7 @@ class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
     category = models.ForeignKey(Category) # cat the post is in
     title = models.CharField(max_length=26) # title of post
-    # desc = models.CharField(max_length=300, blank = True) # description of post
+    #description = models.CharField(max_length=300, blank = True) # description of post
     picture = models.ImageField(upload_to='post_images') # image upload
     likes = models.IntegerField(default=0) # num of likes
     created_date = models.DateTimeField(default=timezone.now) # date the post is created this is for ordering the posts

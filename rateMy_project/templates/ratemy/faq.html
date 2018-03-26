@@ -1,15 +1,26 @@
+
 {% extends 'ratemy/base_bootstrap.html' %}
 {% load staticfiles %}
-{% block title_block %}
-FAQs
+{% load ratemy_template_tags %}
+{% static 'css/faq.css' %} 
+
+{% block head_block %}
+
+<title>FAQs</title>
+
+<link rel="stylesheet" href="{% static "css/faq.css" %}" />
+
+<!--<script src="{% static "js/jquery.js" %}"></script> This is how a sample Jsqueryshuldbeattached-->
 {% endblock %}
 
-    <style>
-    .faqdiv{
-  background-color: #DCF7DB;
+{%block style_block%}
+
+
+div{
+  background-color: powderblue;
   margin: 10px 0px auto;
   padding: 0px;
-  width: 80%;
+  width: 100%;
 }
 
 li{
@@ -28,19 +39,19 @@ li.q{
   background-color: #ccc;
 }
 
+
 li.a{
   margin-left: 10px;
   font-size: 1em;
 }
-    </style>
+
+{% endblock %}
 
 {% block body_block %}
-    <p>This will be the Faq page</p>
-
-    <div id="faqdiv">
-
+ 
+<div>
   <ul>
-    <li class="q">What is HTML?</li>
+    <li class="q">What is RateMy?</li>
     <li class="a">Hypertext Markup Language, a standardized system for tagging text files to achieve font, color, graphic, and hyperlink effects on World Wide Web pages.</li>
     <li class="q">What is CSS?</li>
     <li class="a">Cascading Style Sheets (CSS) is a style sheet language used for describing the presentation of a document written in a markup language.</li>
@@ -49,7 +60,9 @@ li.a{
     <li class="q">What is jQuery?</li>
     <li class="a">jQuery is a cross-platform JavaScript library designed to simplify the client-side scripting of HTML. jQuery is the most popular JavaScript library in use today, with installation on 65% of the top 10 million highest-trafficked sites on the Web. jQuery
       is free, open-source software licensed under the MIT License.</li>
+    <li class="q" ><a href="www.facebook.com">CONTACT US </a></li>
   </ul>
 </div>
+
 
 {% endblock %}

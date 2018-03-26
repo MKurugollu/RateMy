@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from ratemy import views
+from ratemy import views, views_ajax
 
 urlpatterns = [
     url(r'about/$', views.about, name='about'),
@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^profiles/$', views.list_profiles, name='list_profiles'),
 
     url(r'catagory_list/$', views.catagory_list, name='catagory_list'),
-    url(r'^follow_category//$', views.follow_category, name='follow_category'),
+
+    url(r'like_category/$', views_ajax.like_category, name='like_category'),
 
 ]

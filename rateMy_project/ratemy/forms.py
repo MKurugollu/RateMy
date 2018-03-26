@@ -10,6 +10,7 @@ class CategoryForm(forms.ModelForm):
     likes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     slug = forms.CharField(widget=forms.HiddenInput(), required=False)
     image=forms.ImageField()
+    followers = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
 
     class Meta:
         model = Category

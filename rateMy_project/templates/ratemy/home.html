@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% load el_pagination_tags %}
 {% include page_template %}
+{% load sorting_tags %}
 
 
 {% block title_block %}
@@ -15,6 +16,7 @@ Home
 
 
 {% block body_block %}
+<<<<<<< HEAD
     <h1>Home</h1>
 
 {% if posts %}
@@ -41,6 +43,31 @@ Home
         {%else%}
             <strong>No Posts.</strong>
         {%endif%}
+=======
+    <h1></h1>
+{% sort_link "link text" "name" %}
+{% if posts %}
+    <div >
+        {% paginate posts %}
+
+        {% for post in posts %}
+
+        <div>
+        <a href="/ratemy/category/{{post.category.slug}}/{{post.slug}}">
+            <div class="outline"  style="width:100%;margin: 0 auto;padding: 10px;height:150px;margin: 20px 0;background-color:#F8F8F8"></a>
+            <a href = "/ratemy/category/{{post.category.slug}}/{{post.slug}}">{{ post.title }}</a>
+            <img src="{{post.picture.url}}">
+            <p>{{post.author}}</p>
+            <p>{{post.created_date}}</p>
+            <p>{{post.likes}}</p>
+        </div>
+        {% endfor %}
+        {% show_pages %}
+    </div>
+{% else %}
+    <strong>There are no Posts present.</strong>
+{% endif %}
+>>>>>>> 2d9513a0eeed30228d553575f1620fde410527cd
 {% endblock %}
 
 {%block script_block%}
