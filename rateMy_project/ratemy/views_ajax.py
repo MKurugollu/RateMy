@@ -9,7 +9,7 @@ def like_category(request):
     cat_id = None
     if request.method == 'GET':
         cat_id = request.GET['category_id']
-    likes = 0
+    likes = Category.likes
     if cat_id:
         cat = Category.objects.get(id=int(cat_id))
         if cat:

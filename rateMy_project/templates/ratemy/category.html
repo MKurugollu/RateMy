@@ -7,129 +7,60 @@
 {% endblock %}
 
 
-{%block style_block%}
-
-img {
-    max-width: 100%;
-    max-height: 100%;
-}
-.center{
-    width:200px;
-    margin:0 auto;
-    text-align:left;
-}
-
-.div-img {
-    max-width: 100%;
-    max-height: 100%;
-    margin: left;
-    border-radius: 10%;
-    text-align:right;
-    float:left;
-
-}
-
-.image-cropper {
-    width: 300px;
-    height: 300px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 20%;
-    display: inline-block;
-}
-
-.cat-img {
-    display: inline;
-    margin: 0 auto;
-    max-width:100%;
-    max-height:100%;
-}
-
-.outline{
- transition: 0.7s;
-}
-.outline:hover{
-    box-shadow: 0 0 2px 4px powderblue;
-}
-
-.fade{
-    opacity: 1;
-}
-h1{
-    font-family: Palatino
-}
-p {
-  margin: 0 auto;
-  text-align: center;
-}
-{%endblock%}
-
-#leftcolumn, #rightcolumn {
-    border: 1px solid white;
-    float: left;
-    min-height: 450px;
-    color: white;
-}
-#leftcolumn {
-     width: 250px;
-     background-color: #111;
-}
-
-#rightcolumn {
-     width: 750px;
-     background-color: #777;
-}
+{%block head_block%}
+    {% static 'css/category.css' %}
+{% endblock %}
 
 {% block body_block %}
-
-
-
-    <div>
-        <a href="/category/{{category.slug}}/add_post">Add a page</a>
-    <br>
-
-
+    <div id="wrapper">
     {% if category %}
         <h1>{{ category.name }}</h1>
 
-
-
-        <ul>
-
-        </ul>
         <div class="image-cropper"><img class="cat-img" src="{{MEDIA_URL}}{{category.image}}"></div>
-        <p>Creator: <a href="{% url 'profile' category.author %}">{{category.author}}</a></p>
-    <div class="search-container">
-        <form  method="GET" action="">
-            <input  type="text" placeholder="Search for a post.." name="search" value="{{ request.GET.search }}">
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
 
+        <p>Creator: <a href="{% url 'profile' category.author %}">{{category.author}}</a></p>
 
         <div>
-	<strong id="like_count">{{ category.followers}}</strong> people like this category
+
+	<strong id="like_count">{{ category.likes}}</strong> people like this category
 	{% if user.is_authenticated %}
 		<button id="likes" data-catid="{{category.id}}" class="btn btn-primary btn-sm" type="button">
 			Like
 		</button>
 	{% endif %}
 	</div>
-    </div>
+
+        <hr>
+        <div>
+            <h1>Posts</h1>
+        </div>
+        <input type="button" class="btn btn-primary btn-sm" value="Add Post" onclick="location.href = '/category/{{category.slug}}/add_post';">
+        <hr style="visibility: hidden;">
+
+        <div class="search-container">
+            <form  method="GET" action="">
+                <input  type="text" placeholder="Search for a post.." name="search" value="{{ request.GET.search }}">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
 
         {% if posts %}
             <ul>
             {% paginate posts %}
             {%for post in posts %}
-                <div style="text-align:center;">
-                    <a href="/ratemy/category/{{post.category.slug}}/{{post.slug}}">
-                    <div class="outline"  style="width:100%;margin: 0 auto;padding: 10px;height:150px;margin: 20px 0;background-color:#F8F8F8"></a>
-                    <a href = "/ratemy/category/{{post.category.slug}}/{{post.slug}}">{{ post.title }}</a>
-                    <img class="div-img" src="{{post.picture.url}}">
+                <div>
+                    <div class="outline post-div" id="yourdiv">
+
+                    <div class="div-post-img"><a href = "/ratemy/category/{{post.category.slug}}/{{post.slug}}"><img class="post-img" src="{{post.picture.url}}"></a></div>
                     <div id="rightcolumn" >
-                        <p>{{post.author}}</p>
-                        <p>{{post.created_date}}</p>
-                        <p>{{post.likes}}</p>
+                        <h6><a href = "/ratemy/category/{{post.category.slug}}/{{post.slug}}">{{ post.title }}</a></h6>
+                        <p style="font-size:15px">OP: <a href="{% url 'profile' post.author %}">{{post.author}}</a></p>
+                        <p>Likes: {{post.likes}}</p>
+                        <div style="float: right;">
+                            <p style="font-size:10px">{{post.created_date}}</p>
+                        </div>
                     </div>
+                    <br style="clear: left;" />
                 </div>
             {%endfor%}
             {% show_pages %}

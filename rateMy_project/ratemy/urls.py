@@ -19,6 +19,6 @@ urlpatterns = [
 
     url(r'catagory_list/$', views.catagory_list, name='catagory_list'),
 
-    url(r'like/$', views_ajax.like_category, name='like_category'),
+    url(r'like_category/$', views_ajax.like_category, name='like_category'),
 
 ]
