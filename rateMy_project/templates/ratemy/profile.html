@@ -23,7 +23,7 @@
                 <img style="padding-bottom:15px;" src="{{ MEDIA_URL}}{{userprofile.picture}}" width="300px"/>
                 {% csrf_token %}
                 {{ form.as_p }}
-                <input type="submit" value="Update" />
+                <button type="submit" class="btn btn-primary">Update</button>
             </form>
         {% else %}
             <div class="form_style">
