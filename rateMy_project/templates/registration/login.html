@@ -1,55 +1,15 @@
 {% extends "ratemy/base_bootstrap.html" %}
-
+{% load staticfiles %}
 {% block title_block %}
     Log In
 {% endblock %}
 
-{%block style_block%}
-
-
-    .form-control.width{
-        width: 400px !important;
-        margin:auto;
-    }
-
-    .form-control.width:focus{
-        outline: none !important;
-        border:1px solid coral;
-    }
-
-    .form.align{
-        text-align:center !important;
-        display: table-cell;
-        margin: auto;
-    }
-
-    html, body {
-        height: 100%;
-    }
-
-    .required.bold{
-        font-weight: bold;
-    }
-
-    .btn-primary, .btn-primary:active {
-        background-color: Orange  !important;
-    }
-
-    .btn-primary:hover{
-       background-color:coral  !important;
-    }
-    .form_style{
-        position: relative;
-        top: 50%;
-        transform: translateY(25%);
-        padding: 15px;
-        box-shadow: 10px 10px 5px grey;
-    }
-
+{%block head_block%}
+    {% static 'css/forms.css' %}
 {% endblock %}
 
 {% block body_block %}
-<form class="form_style" style="border-radius: 25px;margin:auto;background-color:powderblue;width:500px;color:white;" role="form" method="post" action=".">
+<form class="form_style" role="form" method="post" action=".">
     <h1 class="form-signin-heading">Login</h1>
     <br>
     {% csrf_token %}

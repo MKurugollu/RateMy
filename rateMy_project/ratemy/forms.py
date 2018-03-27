@@ -5,7 +5,7 @@ from django_countries.fields import LazyTypedChoiceField
 from django_countries import countries
 
 class CategoryForm(forms.ModelForm):
-    name = forms.CharField(max_length=128,help_text="Please enter the category name.")
+    name = forms.CharField(max_length=128,help_text="Category Name: ")
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
 
     slug = forms.CharField(widget=forms.HiddenInput(), required=False)
@@ -18,7 +18,7 @@ class CategoryForm(forms.ModelForm):
 
 
 class PostForm(forms.ModelForm):
-    title = forms.CharField(max_length=128, help_text='Please enter the title of the page.')
+    title = forms.CharField(max_length=128, help_text='Post Title: ')
     likes = forms.IntegerField(widget=forms.HiddenInput(), initial = 0)
     category = forms.CharField(widget=forms.HiddenInput(), initial = 0)
     picture = forms.ImageField()

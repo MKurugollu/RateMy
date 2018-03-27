@@ -1,49 +1,11 @@
 {% extends "ratemy/base_bootstrap.html" %}
-
+{% load staticfiles %}
 {% block title_block %}
     Registration
 {% endblock %}
 
-{%block style_block%}
-
-    .form-control.width{
-        width: 400px !important;
-        margin:auto;
-    }
-
-    .form-control.width:focus{
-        outline: none !important;
-        border:1px solid coral;
-    }
-
-    .form.align{
-        text-align:center !important;
-        display: table-cell;
-        margin: auto;
-    }
-
-    html, body {
-        height: 100%;
-    }
-
-    .required.bold{
-        font-weight: bold;
-    }
-
-    .btn-primary, .btn-primary:active {
-        background-color: Orange  !important;
-    }
-
-    .btn-primary:hover{
-       background-color:coral  !important;
-    }
-    .form_style{
-        position: relative;
-        top: 50%;
-        padding: 15px;
-        box-shadow: 10px 10px 5px grey;
-    }
-
+{%block head_block%}
+    {% static 'css/forms.css' %}
 {% endblock %}
 
 {% block body_block %}

@@ -1,25 +1,30 @@
 {% extends 'ratemy/base_bootstrap.html' %}
 {% load staticfiles %}
+
 {% block title_block %}
 Add Category
 {% endblock %}
 
-{% block body_block %}
-    <p>This will be the Add Category Page</p>
+{%block head_block%}
+    {% static 'css/forms.css' %}
+{% endblock %}
 
-    <h1>Add a Category</h1>
-    <div>
-        <form id="category_form" method="post" action= "." enctype="multipart/form-data">
+{% block body_block %}
+        <form class="form_style"  method="post" action= "." enctype="multipart/form-data">
+            <h1>Add a Category</h1>
+            <div class="form-group align">
             {% csrf_token %}
             {% for hidden in form.hidden_fields %}
                 {{hidden}}
             {% endfor %}
             {% for field in form.visible_fields %}
+                <br>
                 {{ field.errors}}
                 {{ field.help_text }}
                 {{field}}
             {% endfor%}
-            <input type="submit" name="submit" value="Create Category" />
+            <hr style="visibility: hidden">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-    </div>
 {% endblock %}

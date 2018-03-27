@@ -4,11 +4,14 @@
     Add Post
 {% endblock %}
 
-{% block body_block %}
+{%block head_block%}
+    {% static 'css/forms.css' %}
+{% endblock %}
 
-    <h1>Add a Post</h1>
-    <div>
-        <form id="post_form" method="post" enctype="multipart/form-data">
+{% block body_block %}
+        <form class="form_style" method="post" enctype="multipart/form-data">
+            <h1>Add a Post</h1>
+            <hr style="visibility: hidden">
             {% csrf_token %}
             {% for hidden in form.hidden_fields %}
                 {{hidden}}
@@ -17,9 +20,9 @@
                 {{ field.errors}}
                 {{ field.help_text }}
                 {{ field }}
+                <br>
             {% endfor%}
-            <input type="submit" name="submit" value="Create Page" />
+            <hr style="visibility: hidden">
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-    </div>
-
 {% endblock %}
