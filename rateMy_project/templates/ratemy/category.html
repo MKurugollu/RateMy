@@ -35,6 +35,16 @@
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
         </div>
+        <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Sort by:
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <form method="GET" action=""><input class="dropdown-item" type="submit" name="sort" value="title"  ></form>
+    <form method="GET" action=""><input class="dropdown-item" type="submit" name="sort" value="likes"  ></form>
+    <form method="GET" action=""><input class="dropdown-item" type="submit" name="sort" value="author"  ></form>
+  </div>
+</div>
         {% if posts %}
             {% paginate posts %}
             {%for post in posts %}

@@ -15,12 +15,16 @@
             </form>
         </div>
 
- <div class="btn-group" data-toggle="buttons">
-
-    <input type="radio" value="name" name="sort" id="option1" autocomplete="off" checked> Sort by ABC
-        <button type="submit"><i class="fa fa-search"></i></button>
-
-    </div>
+  <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Sort by:
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <form method="GET" action=""><input class="dropdown-item" type="submit" name="sort" value="user"  ></form>
+    <form method="GET" action=""><input class="dropdown-item" type="submit" name="sort" value="country"  ></form>
+    <form method="GET" action=""><input class="dropdown-item" type="submit" name="sort" value="first name"  ></form>
+  </div>
+</div>
 <h1>User Profiles</h1>
 
 <div class="panel">

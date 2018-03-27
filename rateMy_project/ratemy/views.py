@@ -79,17 +79,26 @@ def add_post(request, category_name_slug):
 def show_category(request, category_name_slug):
     context_dict = {}
     query=request.GET.get('search')
+    sort=request.GET.get('sort')
 
     try:
         category = Category.objects.get(slug=category_name_slug)
         posts = Post.objects.filter(category=category)
 
-        if query:
+        if sort:
+            if sort=='likes':
+                sort='-likes'
+            posts=posts.order_by(sort)
+            context_dict['posts'] = posts
+            context_dict['category'] = category
+
+        elif query:
+            print(query)
             posts= Post.objects.filter(category=category) & Post.objects.filter(Q(title__icontains=query))
             context_dict['posts'] = posts
             context_dict['category'] = category
         else:
-            posts = posts.order_by('-likes')
+            posts= Post.objects.filter(category=category)
             context_dict['posts'] = posts
             context_dict['category'] = category
     except:
@@ -158,7 +167,9 @@ def list_profiles(request):
     sort=request.GET.get('sort')
 
     if sort:
-        userprofile_list=UserProfile.objects.order_by('sort')
+        if sort=='first name':
+            sort='first_name'
+        userprofile_list=UserProfile.objects.order_by(sort)
 
     if query:
 
