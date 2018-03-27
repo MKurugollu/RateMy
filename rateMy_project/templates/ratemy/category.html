@@ -30,10 +30,10 @@
 
 
 
+        <hr>
 
-        <div>
-            <h1>Posts</h1>
-        </div>
+        <h1>Posts</h1>
+
         <input type="button" class="btn btn-primary btn-sm" value="Add Post" onclick="location.href = '/category/{{category.slug}}/add_post';">
         <hr style="visibility: hidden;">
 
@@ -45,7 +45,6 @@
         </div>
 
         {% if posts %}
-            <ul>
             {% paginate posts %}
             {%for post in posts %}
                     <div class="outline post-div" id="yourdiv">
@@ -61,8 +60,6 @@
                         </div>
                     </div>
                     <br style="clear: left;" />
-            </ul>
-
             {%endfor%}
             {% show_pages %}
 
