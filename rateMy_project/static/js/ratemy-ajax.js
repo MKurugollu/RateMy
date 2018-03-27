@@ -19,6 +19,7 @@ $(document).ready(function() {
 		$.get('/ratemy/like_post/', {post_id: postid,button_id: b_id}, function(data){
 			$('#like_count').html(data);
 			$('#likes').hide();
+			$('#unlike').show();
 		})
 	})
 
@@ -31,6 +32,7 @@ $(document).ready(function() {
 		$.get('/ratemy/like_post/', {post_id: postid,button_id: b_id}, function(data){
 			$('#like_count').html(data);
 			$('#unlike').hide();
+			$('#likes').show()
 		})
 
 	})
