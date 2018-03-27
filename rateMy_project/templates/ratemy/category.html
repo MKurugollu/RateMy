@@ -6,9 +6,8 @@
     {{category.name}}
 {% endblock %}
 
-
 {%block head_block%}
-    {% static 'css/category.css' %}
+    {% static 'css/post-divs.css' %}
 {% endblock %}
 
 {% block body_block %}
@@ -20,30 +19,22 @@
 
         <p>Creator: <a href="{% url 'profile' category.author %}">{{category.author}}</a></p>
 
-
     <div>
 	<strong id="follower_count">{{ category.followers}}</strong> people follow this category
 	{% if user.is_authenticated %}
 		<button id="followers" data-catid="{{category.id}}" class="btn btn-primary btn-sm" type="button">Follow</button>
 	{% endif %}
     </div>
-
-
-
         <hr>
-
         <h1>Posts</h1>
-
         <input type="button" class="btn btn-primary btn-sm" value="Add Post" onclick="location.href = '/category/{{category.slug}}/add_post';">
         <hr style="visibility: hidden;">
-
         <div class="search-container">
             <form  method="GET" action="">
                 <input  type="text" placeholder="Search for a post.." name="search" value="{{ request.GET.search }}">
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
         </div>
-
         {% if posts %}
             {% paginate posts %}
             {%for post in posts %}
@@ -62,7 +53,6 @@
                     <br style="clear: left;" />
             {%endfor%}
             {% show_pages %}
-
         </div>
         {%else%}
             <strong>No pages currently in category.</strong>
@@ -70,5 +60,4 @@
     {%else%}
         The specified category does not exist!
     {% endif %}
-
 {% endblock %}
