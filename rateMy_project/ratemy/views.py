@@ -151,7 +151,6 @@ def profile(request, username):
     return render(request, 'ratemy/profile.html', {'userprofile': userprofile, 'selecteduser': user, 'form': form, 'posts': posts})
 
 
-@login_required
 def list_profiles(request):
 
     userprofile_list=UserProfile.objects.all()

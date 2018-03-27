@@ -16,7 +16,7 @@ Home
     <h1>Home</h1>
     <hr>
     <h3 style="font-family: Palatino;color: Orange;">Top Posts</h3>
-{% if posts %}
+    {% if posts %}
             <ul>
             {% paginate posts %}
             {%for post in posts %}

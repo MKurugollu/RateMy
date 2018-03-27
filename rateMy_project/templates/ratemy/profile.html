@@ -1,70 +1,73 @@
 {% extends 'ratemy/base_bootstrap.html' %}
 {% load staticfiles %}
+{% load el_pagination_tags %}
 {% load countries %}
 {% block title_block %}
     {{selecteduser.username}} - Profile
 {% endblock %}
 
-{%block style_block%}
-.center{
-    width:200px;
-    margin:0 auto;
-    text-align:left;
-}
+{%block head_block%}
+    {% static 'css/post-divs.css' %}
+{% endblock %}
 
-img {
-    max-width: 100%;
-    max-height: 100%;
-    float: left;
-}
-
-.outline{
- transition: 0.7s;
-}
-.outline:hover{
-    box-shadow: 0 0 2px 4px powderblue;
-}
-
-.fade{
-    opacity: 1;
-}
+{%block head_block_2%}
+    {% static 'css/forms.css' %}
 {%endblock%}
 
 {% block body_block %}
-    <img src="{{ MEDIA_URL}}{{userprofile.picture}}" width="300px"/>
+
     <br>
-    <div>
         {% if selecteduser.username == user.username %}
 
-            <form method="post" action="." enctype="multipart/form-data">
+            <form class="form_style" method="post" action="." enctype="multipart/form-data">
+                <img style="padding-bottom:15px;" src="{{ MEDIA_URL}}{{userprofile.picture}}" width="300px"/>
                 {% csrf_token %}
                 {{ form.as_p }}
                 <input type="submit" value="Update" />
             </form>
         {% else %}
-            <p class="pstyle">Name: {{userprofile.first_name}} {{userprofile.last_name}}</p>
+            <div class="form_style">
+            <img style="padding-bottom:15px;" src="{{ MEDIA_URL}}{{userprofile.picture}}" width="300px"/>
+            <p>Name: {{userprofile.first_name}} {{userprofile.last_name}}</p>
             <p>age: {{userprofile.age}}</p>
             <p>From: {{userprofile.country.name}}</p>
             <p>Bio: {{userprofile.bio}}</p>
-            <p>Website:<a href="{{userprofile.fb}}">{{userprofile.fb}}</a></p>
+            <h6 style="color:orange">{{ selecteduser.username }}'s Social Media</h6>
+            <a href="{{userprofile.fb}}">{{userprofile.fb}}</a>
+            <br>
+             <a href="{{userprofile.twitter}}">{{userprofile.twitter}}</a>
+            <br>
+             <a href="{{userprofile.instagram}}">{{userprofile.instagram}}</a>
+            </div>
 
         {% endif %}
-    </div>
-    <div id="edit_profile"></div>
+    <div></div>
+    <hr>
+
     {% if posts %}
-    <div >
-        {% for post in posts %}
-        <div>
-        <a ><div class="outline"  style="width:100%;margin: 0 auto;padding: 10px;height:150px;margin: 20px 0;background-color:#F8F8F8"></a>
-            <a href = "/ratemy/category/{{post.category.slug}}/{{post.slug}}">{{ post.title }}</a>
-            <img src="{{post.picture.url}}">
-            <p>{{post.author}}</p>
-            <p>{{post.created_date}}</p>
-            <p>{{post.likes}}</p>
-        </div>
-        {% endfor %}
-    </div>
-    {% else %}
-    <strong>There are no Posts present.</strong>
-    {% endif %}
+            <h1>{{ selecteduser.username }}'s Posts</h1>
+            <ul>
+            {% paginate posts %}
+            {%for post in posts %}
+                    <div class="outline post-div" id="yourdiv">
+
+                    <div class="div-post-img"><a href = "/ratemy/category/{{post.category.slug}}/{{post.slug}}"><img class="post-img" src="{{post.picture.url}}"></a></div>
+                    <div id="rightcolumn" >
+                        <h6><a href = "/ratemy/category/{{post.category.slug}}/{{post.slug}}">{{ post.title }}</a></h6>
+                        <p style="font-size:15px">OP: <a href="{% url 'profile' post.author %}">{{post.author}}</a></p>
+                        <p>Likes: {{post.likes}}</p>
+                        <div style="float: right;">
+                        <p style="font-size:10px">{{post.created_date}}</p>
+                        </div>
+                    </div>
+                    <br style="clear: left;" />
+                </div>
+            {%endfor%}
+            <br>
+            {% show_pages %}
+            </ul>
+        {%else%}
+
+            <strong>User has no posts =(</strong>
+        {%endif%}
 {% endblock %}

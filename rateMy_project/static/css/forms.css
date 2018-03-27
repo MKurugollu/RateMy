@@ -35,9 +35,6 @@ html, body {
     margin:auto;
     border-radius: 25px;
     background-color:powderblue;
-    position: relative;
-    top: 20%;
-    transform: translateY(25%);
     padding: 15px;
     box-shadow: 10px 10px 5px grey;
 }

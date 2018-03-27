@@ -4,6 +4,7 @@ from django.template.defaultfilters import slugify #  Used to slugify the urls
 from django.conf import settings
 from django.contrib.auth.models import User
 from django_countries.fields import CountryField
+from django.core.validators import MinValueValidator
 
 # Create your models here.
 
@@ -53,7 +54,7 @@ class UserProfile(models.Model):
     first_name = models.CharField(max_length=30, blank=False)
     last_name = models.CharField(max_length=30, blank=False)
 
-    age = models.IntegerField(default=0)
+    age = models.PositiveSmallIntegerField(default=0)
 
     country = CountryField(blank=False)
 

@@ -96,15 +96,15 @@ def populate():
             }
 
     admin_info = [{"username": User.objects.get(username = "admin"),
-                    "first_name": "Hassan",
-                   "last_name": "Khan",
-                   "age":30,
+                    "first_name": "Mustafa",
+                   "last_name": "Kurugollu",
+                   "age":20,
                    "country":"TR",
-                   "fb": "https//www.facebook.com",
-                   "instagram":"",
-                   "twitter":"",
-                   "picture":"category_images/pokemon.PNG",
-                   "bio":"I like pokemon"}
+                   "fb": "https//:www.facebook.com",
+                   "instagram":"https://www.instagram.com/",
+                   "twitter":"https://twitter.com/",
+                   "picture":"profile_images/admin.png",
+                   "bio":"I don't like Pokemon"}
     ]
 
     users= {"user1":{"info": admin_info}
