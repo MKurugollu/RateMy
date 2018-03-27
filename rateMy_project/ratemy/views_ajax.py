@@ -1,6 +1,13 @@
+from django.shortcuts import render
 from django.http import HttpResponse
 from ratemy.models import Category, Post, UserProfile
-
+from ratemy.forms import CategoryForm, PostForm, UserProfileForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
+from django.db.models import Q
+from el_pagination.decorators import page_template
+from django.http import HttpResponseRedirect
 
 from django.contrib.auth.decorators import login_required
 
@@ -44,5 +51,4 @@ def like_post(request):
                 post.save()
 
     return HttpResponse(likes)
-
 

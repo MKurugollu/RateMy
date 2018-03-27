@@ -185,4 +185,3 @@ def catagory_list(request):
     return render(request, 'ratemy/catagory_list.html', context=context_dict)
 
 
-
