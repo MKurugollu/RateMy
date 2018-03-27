@@ -1,48 +1,25 @@
 <!DOCTYPE html>
 
-{% load staticfiles %}
-{% load ratemy_template_tags %}
-
 <html lang="en">
-
     <head>
+        {% load staticfiles %}
+        {% load ratemy_template_tags %}
         <title>RateMy</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="{% static 'css/landing.css' %}" />
+
         <link rel="icon" href="{% static 'website-images/favicon.ico' %}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <style>
-            img {
-                width: 30%;
-                height: auto;
-            }
-            .center{
-                width:200px;
-                margin:0 auto;
-                text-align:left;
-            }
-        </style>
+        <link rel="stylesheet" href="{% static 'css/landing.css/' %}" />
     </head>
-
-  <!--colours i like: DarkTurquoise, DeepSkyBlue  -->
-  <body style="background-color:PowderBlue;text-align:center;">
-  <img src='{% static "website-images/ratemylogoclear.png" %}' alt="ratemy logo">
-
-  <!--<div style="margin:auto;width:300px;" class="search-container">
-        <form action="/action_page.php">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-  </div>
-  -->
-
-
+  <body>
+  <img style="width:30%" src='{% static "website-images/ratemylogoclear.png" %}' alt="ratemy logo"><br>
+  <a href="{% url 'home'%}">Go to Home Page</a>
   <div class="center">
-      <h4>Top Categories</h4>
+      <h2>Top Categories</h2>
       {% if categories %}
       <ul>
           {% for category in categories %}
@@ -52,9 +29,9 @@
       {% else %}
         <strong>There are no categories present.</strong>
       {% endif %}
-    <h4>Top Posts</h4>
+    <h2>Top Posts</h2>
     {%if posts%}
-    <div style="background-color:red;height:300px:width:300px" class="w3-content w3-display-container">
+    <div style="background-color:powderblue;height:300px:width:300px" class="w3-content w3-display-container">
         {% for post in posts %}
         <a href="/ratemy/category/{{post.category.slug}}/{{post.slug}}"><img class="mySlides" src="{{post.picture.url}}" style="width:100%;height:100%;"></a>
         {% endfor %}
@@ -66,9 +43,8 @@
     {% endif %}
   </div>
 
-  <a href="/home">Home</a>
 
-    <div style="text-align:center;padding-bottom:50px">
+    <div style="padding:20px">
 
       <div class="inner-div">
 
@@ -76,37 +52,11 @@
           <input type="button" class="btn btn-primary btn-lg" value="Log Out" onclick="location.href = '{% url 'auth_logout' %}?next=/home';">
     {% else %}
       <input type="button" class="btn btn-primary btn-lg" value="Sign Up" onclick="location.href = 'accounts/register';">
-      <hr style="height:3px;width:100px;margin-top:10px;margin-bottom:10px" />
-      <input style="width:100px" type="button" class="btn btn-primary btn-lg" value="Log In" onclick="location.href = 'accounts/login';">
-      <br>
-      <!--<a href="/password/reset" style="color:white;cursor:pointer"><em>Can't Login?</em></a>-->
+      <input type="button" class="btn btn-primary btn-lg" value="Log In" onclick="location.href = 'accounts/login';">
       <br>
     {% endif %}
-
       </div>
     </div>
-
-
   </body>
-
-<script>
-var slideIndex = 1;
-showDivs(slideIndex);
-
-function plusDivs(n) {
-  showDivs(slideIndex += n);
-}
-
-function showDivs(n) {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  if (n > x.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = x.length}
-  for (i = 0; i < x.length; i++) {
-     x[i].style.display = "none";
-  }
-  x[slideIndex-1].style.display = "block";
-}
-</script>
-
+<script src="{% static 'js/landing.js' %}"></script>
 </html>

@@ -15,7 +15,6 @@
 {%endblock%}
 
 {% block body_block %}
-
     <br>
         {% if selecteduser.username == user.username %}
 
@@ -39,11 +38,9 @@
             <br>
              <a href="{{userprofile.instagram}}">{{userprofile.instagram}}</a>
             </div>
-
         {% endif %}
     <div></div>
     <hr>
-
     {% if posts %}
             <h1>{{ selecteduser.username }}'s Posts</h1>
             <ul>
@@ -67,7 +64,6 @@
             {% show_pages %}
             </ul>
         {%else%}
-
             <strong>User has no posts =(</strong>
         {%endif%}
 {% endblock %}
