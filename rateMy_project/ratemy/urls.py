@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'follow_category/$', views_ajax.follow_category, name='follow_category'),
     url(r'like_post/$', views_ajax.like_post, name='like_post'),
 
+
 ]

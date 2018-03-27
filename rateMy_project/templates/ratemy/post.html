@@ -16,7 +16,14 @@ Add Category
     <div>
         <strong id="like_count">{{ post.likes}}</strong> people like this post
 	{% if user.is_authenticated %}
-		<button id="likes" data-postid="{{post.id}}" class="btn btn-primary btn-sm" type="button">Like</button>
+		<button id="likes" data-postid="{{post.id}}" class="btn btn-primary btn-sm" buttonid="like" type="button">Like</button>
+	{% endif %}
+    </div>
+
+    <div>
+        
+	{% if user.is_authenticated %}
+		<button id="unlike" data-postid="{{post.id}}" class="btn btn-primary btn-sm" buttonid="unlike" type="button">Dislike</button>
 	{% endif %}
     </div>
 

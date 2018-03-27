@@ -21,15 +21,28 @@ def follow_category(request):
 @login_required
 def like_post(request):
     post_id = None
+    button_id=None
+
+
     if request.method == 'GET':
+
         post_id = request.GET['post_id']
+        button_id= request.GET.get('button_id')
+
     likes = 0
+
     if post_id:
         post = Post.objects.get(id=int(post_id))
         if post:
-            likes = post.likes + 1
-            post.likes = likes
-            post.save()
+            if button_id=='like':
+                likes = post.likes + 1
+                post.likes = likes
+                post.save()
+            elif button_id=='unlike':
+                likes = post.likes - 1
+                post.likes = likes
+                post.save()
+
     return HttpResponse(likes)
 
 

@@ -11,9 +11,28 @@ $(document).ready(function() {
 
 	$('#likes').click(function(){
 		var postid;
+		var b_id;
+
 		postid = $(this).attr("data-postid");
-		$.get('/ratemy/like_post/', {post_id: postid}, function(data){
+		b_id = $(this).attr("buttonid");
+
+		$.get('/ratemy/like_post/', {post_id: postid,button_id: b_id}, function(data){
 			$('#like_count').html(data);
 			$('#likes').hide();
 		})
-	})})
+	})
+
+	$('#unlike').click(function(){
+		var postid;
+		var b_id;
+
+		postid = $(this).attr("data-postid");
+		b_id = $(this).attr("buttonid");
+		$.get('/ratemy/like_post/', {post_id: postid,button_id: b_id}, function(data){
+			$('#like_count').html(data);
+			$('#unlike').hide();
+		})
+
+	})
+
+})
