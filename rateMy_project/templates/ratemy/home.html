@@ -12,11 +12,15 @@ Home
     {% static 'css/post-divs.css' %}
 {% endblock %}
 
+{%block script_block%}
+    {% static 'js/faq.js' %}
+{%endblock%}"
+
 {% block body_block %}
     <h1>Home</h1>
     <hr>
     <h3 style="font-family: Palatino;color: Orange;">Top Posts</h3>
-{% if posts %}
+    {% if posts %}
             <ul>
             {% paginate posts %}
             {%for post in posts %}

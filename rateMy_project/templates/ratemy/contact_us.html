@@ -3,55 +3,20 @@
 {% block title_block %}
 Contact Us
 {% endblock %}
-
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
-
-input[type=text], select, textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-top: 6px;
-    margin-bottom: 16px;
-    resize: vertical;
-}
-
-input[type=submit] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-input[type=submit]:hover {
-    background-color: #45a049;
-}
-
-.container {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-}
-</style>
+{%block head_block_2%}
+    {% static 'css/forms.css' %}
+{%endblock%}
 
 {% block body_block %}
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<body>
-
-<h3>Contact Form</h3>
-
-<div class="container">
-  <form action="/action_page.php">
-    <input type="text" id="fname" name="firstname" placeholder="Your name..">
-    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-     <hr style="visibility: hidden;">
-    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-     <hr style="visibility: hidden;">
-    <input type="submit" value="Submit">
-  </form>
+<div class="form_style">
+<h1>Got a suggestion for the site? Have a question?</h1>
+<h6>(Or you just want to tell us how awesome we are!)</h6>
+<h4>Send us an email!</h4>
+<div>
+    <p><strong>Mustafa Kurugollu</strong>: 2288113@student.gla.ac.uk</p>
+    <p><strong>Hassan Khan</strong>: 2288115k@student.gla.ac.uk</p>
+    <p><strong>Muhammad Fahd Asif</strong>: 2262555A@student.gla.ac.uk</p>
+    <p><strong>Peter Maltzoff</strong>: 2259598m@student.gla.ac.uk</p>
+</div>
 </div>
 {%endblock%}

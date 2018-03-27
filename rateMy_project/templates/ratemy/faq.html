@@ -1,29 +1,20 @@
-
 {% extends 'ratemy/base_bootstrap.html' %}
 {% load staticfiles %}
 {% load ratemy_template_tags %}
-{% static 'css/faq.css' %} 
 
-{% block head_block %}
-
-<title>FAQs</title>
-
-<link rel="stylesheet" href="{% static "css/faq.css" %}" />
-
-<!--<script src="{% static "js/jquery.js" %}"></script> This is how a sample Jsqueryshuldbeattached-->
+{% block title_block %}
+  FAQs
 {% endblock %}
 
-{%block style_block%}
 
-
-div{
-  background-color: powderblue;
+{% block style_block %}
+.faq_div{
   margin: 10px 0px auto;
   padding: 0px;
   width: 100%;
 }
 
-li{
+.faq_li{
   width: 90%;
   display: block;
   font-size: 14px;
@@ -33,34 +24,40 @@ li{
   color: #0E3C29;
 }
 
-li.q{
+.faq_li.q{
   font-size: 1.3em;
   cursor: pointer;
   background-color: #ccc;
 }
 
 
-li.a{
+.faq_li.a{
   margin-left: 10px;
   font-size: 1em;
 }
 
+.faq_li.q::before{
+	content:"+";
+	margin-right:10px;
+}
 {% endblock %}
 
 {% block body_block %}
  
-<div>
+<div class="faq_div" style="background-color:red">
   <ul>
-    <li class="q">What is RateMy?</li>
-    <li class="a">Hypertext Markup Language, a standardized system for tagging text files to achieve font, color, graphic, and hyperlink effects on World Wide Web pages.</li>
-    <li class="q">What is CSS?</li>
-    <li class="a">Cascading Style Sheets (CSS) is a style sheet language used for describing the presentation of a document written in a markup language.</li>
-    <li class="q">What is JavaScript?</li>
-    <li class="a">an object-oriented computer programming language commonly used to create interactive effects within web browsers.</li>
-    <li class="q">What is jQuery?</li>
-    <li class="a">jQuery is a cross-platform JavaScript library designed to simplify the client-side scripting of HTML. jQuery is the most popular JavaScript library in use today, with installation on 65% of the top 10 million highest-trafficked sites on the Web. jQuery
-      is free, open-source software licensed under the MIT License.</li>
-    <li class="q" ><a href="www.facebook.com">CONTACT US </a></li>
+    <li class="faq_li q">What is RateMy?</li>
+    <li class="faq_li a">RateMy is a rating and discussion website.
+	Registered members can create categories in which other registered members can upload
+	images and text posts. These posts can be upvoted/downvoted by
+	fellow members.</li>
+    <li class="faq_li q">How can I create a Category?</li>
+    <li class="faq_li a">You have to be logged in first and click on the dropdown menu  with your username and you should see a link to the "Create a Category" page</li>
+    <li class="faq_li q">How can I create a Post?</li>
+    <li class="faq_li a">First be a logged in. Then navigate to the category you want to post to and there you will find an "Add Post" button</li>
+    <li class="faq_li q">How can I comment?</li>
+    <li class="faq_li a">To be able to comment you must have a logged in Facebook account.</li>
+    <li class="faq_li q" ><a href="{% url 'contact_us' %}">CONTACT US </a></li>
   </ul>
 </div>
 
