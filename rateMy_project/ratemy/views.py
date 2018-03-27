@@ -156,6 +156,11 @@ def list_profiles(request):
 
     userprofile_list=UserProfile.objects.all()
     query=request.GET.get('search')
+    sort=request.GET.get('sort')
+
+    if sort:
+        userprofile_list=UserProfile.objects.order_by('sort')
+
     if query:
 
         userprofile_list= UserProfile.objects.filter( Q(user__username__icontains=query) )
@@ -174,7 +179,19 @@ def catagory_list(request):
     category_list = Category.objects.all()
 
 
+
+    sort=request.GET.get('sort')
     query=request.GET.get('search')
+
+
+
+    if sort:
+        if sort=='followers':
+            sort="-followers"
+        print(sort)
+        category_list=Category.objects.order_by(sort)
+
+
     if query:
 
         category_list= Category.objects.filter(Q(name__icontains=query) | Q(author__username__icontains=query) )
