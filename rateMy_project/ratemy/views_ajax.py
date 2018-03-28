@@ -11,6 +11,9 @@ from django.http import HttpResponseRedirect
 
 from django.contrib.auth.decorators import login_required
 
+
+
+#Gets information from ajax and depending on button clicked adds 1 or takes away 1 from counter
 @login_required
 def follow_category(request):
     cat_id = None
@@ -39,6 +42,8 @@ def follow_category(request):
 
     return HttpResponse(followers)
 
+
+#Gets information from ajax and depending on button clicked adds 1 or takes away 1 from counter
 @login_required
 def like_post(request):
     post_id = None
