@@ -124,10 +124,14 @@ def populate():
                         "image":"category_images/why_tho.jpg",
                         "author": User.objects.get(username='admin')},
 
-            "Weied Dogs": {"posts": weird_dogs, "followers":560,
+            "Weird Dogs": {"posts": weird_dogs, "followers":560,
                         "image":"category_images/Nice.jpg",
                         "author": User.objects.get(username='admin')}
             }
+
+    #PLEASE NOTE: A User Profile requires a User model. When website is first launched on your local machine the only user model is
+    #the admin user. Therefore we could not populate the User Profiles other than for the admin user. If you would like to see a
+    #populated version please look at the "profiles" tab on the pythonanywhere website. We added a few usermodels manually. Thank you.
 
     admin_info = [{"username": User.objects.get(username = "admin"),
                     "first_name": "Mustafa",
@@ -152,8 +156,6 @@ def populate():
     # if you are using Python 2.x then use cats.iteritems() see
     # http://docs.quantifiedcode.com/python-anti-patterns/readability/not_using_items_to_iterate_over_a_dictionary.html
     # for more information about using items() and how to iterate over a dictionary properly
-
-    # Using the .items returns the key and the value. In this case the key is "Python", "Django" or "Other Frameworks" and the value (cat_data) is the corresponding dictionary in cats.
 
 
     for cat, cat_data in cats.items():
