@@ -14,11 +14,14 @@ def landing(request):
 
     category_list = Category.objects.order_by('-followers')[:5]
     post_list = Post.objects.order_by('-likes')[:5]
-    context_dict = {'categories': category_list, 'posts': post_list}
+    visits = int(request.COOKIES.get('visits', '1'))
+    context_dict = {'categories': category_list, 'posts': post_list, 'visits': visits}
 
     # Obtain our Response object early so we can add cookie information.
     response = render(request, 'ratemy/landing.html', context=context_dict) #second param is for the Directory of the hmtl template
-    # Call the helper function to handle the cookies
+
+
+
     visitor_cookie_handler(request, response)
     # Return response back to the user, updating any cookies that need changed.
     return response
