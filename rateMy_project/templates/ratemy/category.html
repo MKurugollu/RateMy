@@ -6,6 +6,7 @@
 
 
 {% block body_block %}
+{{category.views}}
         <div class="search-container">
             <form  method="GET" action="">
                 <input  type="text" placeholder="Search.." name="search" value="{{ request.GET.search }}">

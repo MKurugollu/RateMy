@@ -47,7 +47,7 @@ def visitor_cookie_handler(request, response,category):
     # We use the COOKIES.get() function to obtain the visits cookie.
     # If the cookie exists, the value returned is casted to an integer.
     # If the cookie doesn't exist, then the default value of 1 is used.
-    visits = int(request.COOKIES.get('visits'+category+post, '1'))
+    visits = int(request.COOKIES.get('visits'+category, '1'))
     last_visit_cookie = request.COOKIES.get('last_visit', str(datetime.now()))
     last_visit_time = datetime.strptime(last_visit_cookie[:-7],'%Y-%m-%d %H:%M:%S')
     # If it's been more than a day since the last visit...
@@ -59,7 +59,7 @@ def visitor_cookie_handler(request, response,category):
         # Set the last visit cookie
         response.set_cookie('last_visit', last_visit_cookie)
     # Update/set the visits cookie
-    response.set_cookie('visits'+category+post, visits)
+    response.set_cookie('visits'+category, visits)
 
 
 @login_required

@@ -7,6 +7,7 @@ from django_countries.fields import CountryField
 # Create your models here.
 
 class Category(models.Model):
+    views = models.IntegerField(default=0)
     name = models.CharField(max_length=18, unique=True) # name of the category
     followers = models.IntegerField(default=0) # num of authorised users following/liking(?) the category
     image = models.ImageField(upload_to='category_images') # image upload
