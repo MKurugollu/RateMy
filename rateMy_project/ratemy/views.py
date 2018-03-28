@@ -16,7 +16,14 @@ def landing(request):
     post_list = Post.objects.order_by('-likes')[:5]
     context_dict = {'categories': category_list, 'posts': post_list}
 
-    return render(request, 'ratemy/landing.html', context=context_dict) #second param is for the Directory of the hmtl template
+    # Obtain our Response object early so we can add cookie information.
+    response = render(request, 'ratemy/landing.html', context=context_dict) #second param is for the Directory of the hmtl template
+    # Call the helper function to handle the cookies
+    visitor_cookie_handler(request, response)
+    # Return response back to the user, updating any cookies that need changed.
+    return response
+
+    #return render(request, 'ratemy/landing.html', context=context_dict) #second param is for the Directory of the hmtl template
 
 
 def about(request):
@@ -42,12 +49,12 @@ def home(request, template = 'ratemy/home.html', extra_context=None):
     return render(request, template, context_dict)
 
 
-def visitor_cookie_handler(request, response,category):
+def visitor_cookie_handler(request, response):
     # Get the number of visits to the site.
     # We use the COOKIES.get() function to obtain the visits cookie.
     # If the cookie exists, the value returned is casted to an integer.
     # If the cookie doesn't exist, then the default value of 1 is used.
-    visits = int(request.COOKIES.get('visits'+category, '1'))
+    visits = int(request.COOKIES.get('visits', '1'))
     last_visit_cookie = request.COOKIES.get('last_visit', str(datetime.now()))
     last_visit_time = datetime.strptime(last_visit_cookie[:-7],'%Y-%m-%d %H:%M:%S')
     # If it's been more than a day since the last visit...
@@ -59,7 +66,7 @@ def visitor_cookie_handler(request, response,category):
         # Set the last visit cookie
         response.set_cookie('last_visit', last_visit_cookie)
     # Update/set the visits cookie
-    response.set_cookie('visits'+category, visits)
+    response.set_cookie('visits', visits)
 
 
 @login_required
@@ -118,14 +125,7 @@ def show_category(request, category_name_slug):
         context_dict['posts'] = None
         context_dict['category'] = None
 
-    # Obtain our Response object early so we can add cookie information.
-    response = render(request, 'ratemy/category.html', context_dict)
-    # Call the helper function to handle the cookies
-    visitor_cookie_handler(request, response,category_name_slug)
-    # Return response back to the user, updating any cookies that need changed.
-    return response
-
-    #return render(request, 'ratemy/category.html', context_dict)
+    return render(request, 'ratemy/category.html', context_dict)
 
 
 def show_post(request, post_title_slug, category_name_slug):
