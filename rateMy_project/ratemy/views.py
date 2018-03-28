@@ -8,8 +8,10 @@ from django.core.urlresolvers import reverse
 from django.db.models import Q
 from el_pagination.decorators import page_template
 from django.http import HttpResponseRedirect
+from datetime import datetime
 
 def landing(request):
+
     category_list = Category.objects.order_by('-followers')[:5]
     post_list = Post.objects.order_by('-likes')[:5]
     context_dict = {'categories': category_list, 'posts': post_list}
@@ -18,6 +20,7 @@ def landing(request):
 
 
 def about(request):
+
     context_dict = {}
     return render(request, 'ratemy/about.html', context=context_dict)
 
@@ -38,6 +41,25 @@ def home(request, template = 'ratemy/home.html', extra_context=None):
         context_dict.update(extra_context)
     return render(request, template, context_dict)
 
+
+def visitor_cookie_handler(request, response,category):
+    # Get the number of visits to the site.
+    # We use the COOKIES.get() function to obtain the visits cookie.
+    # If the cookie exists, the value returned is casted to an integer.
+    # If the cookie doesn't exist, then the default value of 1 is used.
+    visits = int(request.COOKIES.get('visits'+category+post, '1'))
+    last_visit_cookie = request.COOKIES.get('last_visit', str(datetime.now()))
+    last_visit_time = datetime.strptime(last_visit_cookie[:-7],'%Y-%m-%d %H:%M:%S')
+    # If it's been more than a day since the last visit...
+    if (datetime.now() - last_visit_time).seconds > 0:
+        visits = visits + 1
+        # Update the last visit cookie now that we have updated the count
+        response.set_cookie('last_visit', str(datetime.now()))
+    else:
+        # Set the last visit cookie
+        response.set_cookie('last_visit', last_visit_cookie)
+    # Update/set the visits cookie
+    response.set_cookie('visits'+category+post, visits)
 
 
 @login_required
@@ -96,9 +118,14 @@ def show_category(request, category_name_slug):
         context_dict['posts'] = None
         context_dict['category'] = None
 
+    # Obtain our Response object early so we can add cookie information.
+    response = render(request, 'ratemy/category.html', context_dict)
+    # Call the helper function to handle the cookies
+    visitor_cookie_handler(request, response,category_name_slug)
+    # Return response back to the user, updating any cookies that need changed.
+    return response
 
-
-    return render(request, 'ratemy/category.html', context_dict)
+    #return render(request, 'ratemy/category.html', context_dict)
 
 
 def show_post(request, post_title_slug, category_name_slug):
