@@ -61,7 +61,6 @@ INSTALLED_APPS = [
     'registration',
     'django_countries',
     'el_pagination',
-    'sorting_bootstrap'
 ]
 
 MIDDLEWARE_CLASSES = [
