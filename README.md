@@ -84,7 +84,7 @@ can upload images (and maybe videos if possible) of the category and other users
  
  tl;dr: basically recreate a better looking reddit for rating images ;)
  
- Requirements:
+# Requirements :
  To populate the database a superuser named admin is required.
  
  External Sources:
