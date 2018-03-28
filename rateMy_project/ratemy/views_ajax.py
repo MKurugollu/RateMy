@@ -14,15 +14,29 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def follow_category(request):
     cat_id = None
+    button_id=None
+
     if request.method == 'GET':
+
         cat_id = request.GET['category_id']
+        button_id= request.GET.get('button_id')
+
+
     followers = 0
+
     if cat_id:
         cat = Category.objects.get(id=int(cat_id))
         if cat:
-            followers = cat.followers + 1
-            cat.followers = followers
-            cat.save()
+            if button_id=='followers':
+                followers = cat.followers + 1
+                cat.followers = followers
+                cat.save()
+            elif button_id=='unfollow':
+                followers = cat.followers - 1
+                cat.followers = followers
+                cat.save()
+
+
     return HttpResponse(followers)
 
 @login_required

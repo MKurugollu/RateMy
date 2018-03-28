@@ -22,9 +22,12 @@
     <div>
 	<strong id="follower_count">{{ category.followers}}</strong> people follow this category
 	{% if user.is_authenticated %}
-		<button id="followers" data-catid="{{category.id}}" class="btn btn-primary btn-sm" type="button">Follow</button>
+		<button id="followers"  data-catid="{{category.id}}" class="btn btn-primary btn-sm" type="button">Follow</button>
+        <button id="unfollow"  data-catid="{{category.id}}" class="btn btn-primary btn-sm" type="button">Unfollow</button>
 	{% endif %}
     </div>
+
+
         <hr>
         <h1>Posts</h1>
         <input type="button" class="btn btn-primary btn-sm" value="Add Post" onclick="location.href = '/category/{{category.slug}}/add_post';">

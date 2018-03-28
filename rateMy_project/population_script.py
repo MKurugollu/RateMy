@@ -124,7 +124,7 @@ def populate():
                         "image":"category_images/why_tho.jpg",
                         "author": User.objects.get(username='admin')},
 
-            "Weied Dogs": {"posts": weird_dogs, "followers":560,
+            "Weird Dogs": {"posts": weird_dogs, "followers":560,
                         "image":"category_images/Nice.jpg",
                         "author": User.objects.get(username='admin')}
             }

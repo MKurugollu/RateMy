@@ -1,13 +1,41 @@
 $(document).ready(function() {
 		// JQuery code to be added in here.
-		$('#followers').click(function(){
-		var catid;
+
+    $('#unfollow').hide();
+	$('#followers').click(function(){
+
+	    var catid;
+	    var b_id;
+
+
 		catid = $(this).attr("data-catid");
-		$.get('/ratemy/follow_category/', {category_id: catid}, function(data){
+		b_id= $(this).attr("id");
+
+		$.get('/ratemy/follow_category/', {category_id: catid, button_id:b_id}, function(data){
 			$('#follower_count').html(data);
+			$('#unfollow').show();
 			$('#followers').hide();
+
 		})
 	})
+
+	$('#unfollow').click(function(){
+		var catid;
+		var b_id;
+
+		catid = $(this).attr("data-catid");
+		b_id = $(this).attr("id");
+
+		$.get('/ratemy/follow_category/', {category_id: catid, button_id:b_id}, function(data){
+			$('#follower_count').html(data);
+			$('#followers').show();
+			$('#unfollow').hide();
+
+		})
+
+	})
+
+
 
 	$('#likes').click(function(){
 		var postid;
