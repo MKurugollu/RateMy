@@ -25,9 +25,9 @@ Home
             {%for post in posts %}
                     <div class="outline post-div" id="yourdiv">
 
-                    <div class="div-post-img"><a href = "/ratemy/category/{{post.category.slug}}/{{post.slug}}"><img class="post-img" src="{{post.picture.url}}"></a></div>
+                    <div class="div-post-img"><a href = "{%url 'show_post' post.category.slug post.slug%}"><img class="post-img" src="{{post.picture.url}}"></a></div>
                     <div id="rightcolumn" >
-                        <h6><a href = "/ratemy/category/{{post.category.slug}}/{{post.slug}}">{{ post.title }}</a></h6>
+                        <h6><a href = "{%url 'show_post' post.category.slug post.slug%}">{{ post.title }}</a></h6>
                         <p style="font-size:15px">OP: <a href="{% url 'profile' post.author %}">{{post.author}}</a></p>
                         <p>Likes: {{post.likes}}</p>
                         <div style="float: right;">

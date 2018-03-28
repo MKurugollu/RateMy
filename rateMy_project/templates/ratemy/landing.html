@@ -33,7 +33,7 @@
     {%if posts%}
     <div style="background-color:powderblue;height:300px:width:300px" class="w3-content w3-display-container">
         {% for post in posts %}
-        <a href="/ratemy/category/{{post.category.slug}}/{{post.slug}}"><img class="mySlides" src="{{post.picture.url}}" style="width:100%;height:100%;"></a>
+        <a href="{%url 'show_post' post.category.slug post.slug%}"><img class="mySlides" src="{{post.picture.url}}" style="width:100%;height:100%;"></a>
         {% endfor %}
         <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
         <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
@@ -51,8 +51,8 @@
     {% if user.is_authenticated %}
           <input type="button" class="btn btn-primary btn-lg" value="Log Out" onclick="location.href = '{% url 'auth_logout' %}?next=/home';">
     {% else %}
-      <input type="button" class="btn btn-primary btn-lg" value="Sign Up" onclick="location.href = 'accounts/register';">
-      <input type="button" class="btn btn-primary btn-lg" value="Log In" onclick="location.href = 'accounts/login';">
+      <input type="button" class="btn btn-primary btn-lg" value="Sign Up" onclick="location.href = '{% url 'registration_register'%}';">
+      <input type="button" class="btn btn-primary btn-lg" value="Log In" onclick="location.href = '{% url 'auth_login' %}';">
       <br>
     {% endif %}
       </div>

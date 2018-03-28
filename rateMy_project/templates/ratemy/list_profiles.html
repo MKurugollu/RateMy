@@ -41,7 +41,7 @@
         {%for listuser in userprofile_list %}
                 <div class="outline post-div" id="yourdiv">
 
-                <div class="div-post-img"><a href = ""><img class="post-img" src="{{ MEDIA_URL}}{{listuser.picture}}"></a></div>
+                <div class="div-post-img"><a href = "{% url 'profile' listuser.user.username %}"><img class="post-img" src="{{ MEDIA_URL}}{{listuser.picture}}"></a></div>
                 <div id="rightcolumn" >
                     <h4>
                     <a href="{% url 'profile' listuser.user.username %}">{{ listuser.user.username }}</a>

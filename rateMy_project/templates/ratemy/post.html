@@ -20,6 +20,8 @@
     {%endif%}
     </div>
 
+    <p>OP: <a href="{% url 'profile' post.author %}">{{post.author}}</a></p>
+
     <div>
         <strong id="like_count">{{ post.likes}}</strong> people like this post
 	{% if user.is_authenticated %}

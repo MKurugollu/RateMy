@@ -131,7 +131,8 @@ def populate():
 
     #PLEASE NOTE: A User Profile requires a User model. When website is first launched on your local machine the only user model is
     #the admin user. Therefore we could not populate the User Profiles other than for the admin user. If you would like to see a
-    #populated version please look at the "profiles" tab on the pythonanywhere website. We added a few usermodels manually. Thank you.
+    #populated version please look at the "profiles" tab on the pythonanywhere website. We added a few usermodels manually.
+    # Or you could manually add a register a few User models and add their info for their User Profile.  Thank you.
 
     admin_info = [{"username": User.objects.get(username = "admin"),
                     "first_name": "Mustafa",
