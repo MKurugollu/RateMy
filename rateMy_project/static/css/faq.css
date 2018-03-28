@@ -1,0 +1,32 @@
+.faq_div{
+  margin: 10px 0px auto;
+  padding: 0px;
+  width: 100%;
+}
+
+.faq_li{
+  width: 90%;
+  display: block;
+  font-size: 14px;
+  font-family: Tahoma;
+  padding: 10px;
+  margin: 10px auto;
+  color: #0E3C29;
+}
+
+.faq_li.q{
+  font-size: 1.3em;
+  cursor: pointer;
+  background-color: #ccc;
+}
+
+
+.faq_li.a{
+  margin-left: 10px;
+  font-size: 1em;
+}
+
+.faq_li.q::before{
+	content:"+";
+	margin-right:10px;
+}

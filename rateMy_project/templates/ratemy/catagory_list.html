@@ -11,17 +11,18 @@
 
 {% block body_block %}
     <h1>Category List</h1>
-
+    <hr>
     <div class="search-container">
             <form  method="GET" action="">
                 <input  type="text" placeholder="Search for a category..." name="search" value="{{ request.GET.search }}">
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
         </div>
+    <hr style="visibility: hidden">
 
+<div style="text-align:center">
 
-
-    <div class="dropdown">
+    <div style="width:10%;display: inline-block;" class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Sort by:
   </button>
@@ -31,16 +32,17 @@
     <form method="GET" action=""><input class="dropdown-item" type="submit" name="sort" value="followers"  ></form>
   </div>
 </div>
-
+</div>
     {% if categories %}
         {% paginate categories %}
         {% for category in categories %}
             <div class="outline post-div" id="yourdiv">
-                <div class="div-post-img"><a href="/category/{{category.slug}}" ><img src="{{MEDIA_URL}}{{category.image}}"></a></div>
+                <div class="div-post-img"><a href="/category/{{category.slug}}" ><img class="post-img" src="{{MEDIA_URL}}{{category.image}}"></a></div>
                 <div id="rightcolumn" >
-                    {{ category.title }}
                     <h6><a href = "/category/{{category.slug}}">{{ category.name }}</a></h6>
-                    <p>{{ category.author }}</p>
+                    <hr style="visibility: hidden">
+                    <p>Creator:  <a href="{% url 'profile' category.author %}">{{ category.author }}</a></p>
+                    <p>Followers:  {{category.followers}}</p>
                 </div>
             </div>
             <br style="clear: left;"/>
