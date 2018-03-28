@@ -54,17 +54,17 @@ def populate():
 
     pokemon_posts=[{"title": "Charizard",
          "picture": "post_images_pop/charizard.jpg",
-         "likes": 250000,
+         "likes": 250,
          "author": User.objects.get(username='admin'),
          "date": timezone.now},
          {"title": "Blastoise",
          "picture": "post_images_pop/Blastoise.jpg",
-         "likes": 100000,
+         "likes": 100,
          "author": User.objects.get(username='admin'),
          "date": timezone.now},
          {"title": "Gengar",
          "picture": "post_images_pop/Gengar.jpg",
-         "likes": 200000,
+         "likes": 200,
          "author": User.objects.get(username='admin'),
          "date": timezone.now}
 
@@ -78,20 +78,54 @@ def populate():
 
     ]
 
+    weird_dogs=[
+        {"title": "What even is doge?",
+         "picture": "post_images_pop/weird_doge.jpg",
+         "likes": 78,
+         "author": User.objects.get(username='admin'),
+         "date": timezone.now},
+
+        {"title": "Janitor dog",
+         "picture": "post_images_pop/mop_dog.jpg",
+         "likes": 498,
+         "author": User.objects.get(username='admin'),
+         "date": timezone.now},
+
+        {"title": "Happy dog",
+         "picture": "post_images_pop/happy_dog.jpg",
+         "likes": 338,
+         "author": User.objects.get(username='admin'),
+         "date": timezone.now},
+
+        {"title": "Nice Doge",
+         "picture": "post_images_pop/doge.jpg",
+         "likes": 128,
+         "author": User.objects.get(username='admin'),
+         "date": timezone.now}
+
+
+    ]
+
+
+
     cats = {"Barber": {"posts": barber_posts, "followers": 450,
                        "image": "category_images/Barber_sign.jpg",
                        "author": User.objects.get(username='admin')},
 
             "Face Swap": {"posts": faceswap_posts, "followers": 300,
-                          "image": "category_images/pokemon.png",
+                          "image": "category_images/bean-mona.jpg",
                           "author": User.objects.get(username='admin')},
 
-            "Pokemon": {"posts": pokemon_posts, "followers":1000000,
+            "Pokemon": {"posts": pokemon_posts, "followers":100,
                         "image":"category_images/pokemon.png",
                         "author": User.objects.get(username='admin')},
 
             "Why tho": {"posts": why_tho_posts, "followers":1,
-                        "image":"category_images/pokemon.PNG",
+                        "image":"category_images/why_tho.jpg",
+                        "author": User.objects.get(username='admin')},
+
+            "Weied Dogs": {"posts": weird_dogs, "followers":560,
+                        "image":"category_images/Nice.jpg",
                         "author": User.objects.get(username='admin')}
             }
 
